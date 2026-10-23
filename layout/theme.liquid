@@ -54,6 +54,8 @@
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'blocky-lys-global.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'glide.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'waymelo-quick-choose.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'blocky-image-video-slider.js' | asset_url }}" defer></script>
     <script src="{{ 'blocky-video.js' | asset_url }}" defer></script>
     {%- if settings.animations_reveal_on_scroll -%}
@@ -341,6 +343,8 @@
         {{ 'waymelo-collection.css' | asset_url | stylesheet_tag }}
       {%- endif -%}
       {{ 'glide.core.min.css' | asset_url | stylesheet_tag }}
+      {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+      {{ 'waymelo-quick-choose.css' | asset_url | stylesheet_tag }}
 
     {%- unless settings.type_body_font.system? -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}
