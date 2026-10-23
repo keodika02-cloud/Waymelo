@@ -356,24 +356,6 @@
     "blocky_image_video_slider_7cgTND": {
       "type": "blocky-image-video-slider",
       "blocks": {
-        "video_8dDBDk": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/gift.mp4",
-            "autoplay": true,
-            "text": "",
-            "text_alignment": "center"
-          }
-        },
-        "video_XfDGtD": {
-          "type": "video",
-          "settings": {
-            "video": "shopify://files/videos/3 tầng đựng sữa.mp4",
-            "autoplay": true,
-            "text": "",
-            "text_alignment": "center"
-          }
-        },
         "video_ynYbqY": {
           "type": "video",
           "settings": {
@@ -385,8 +367,6 @@
         }
       },
       "block_order": [
-        "video_8dDBDk",
-        "video_XfDGtD",
         "video_ynYbqY"
       ],
       "name": "Blocky Image/Video Slider",
@@ -412,7 +392,7 @@
         "mobile_content_alignment": "center",
         "media_spacing": 28,
         "arrows_position": "hidden",
-        "dots_position": "under",
+        "dots_position": "hidden",
         "background_color": "#ffffff",
         "show_blur": false,
         "show_shadow": true,
