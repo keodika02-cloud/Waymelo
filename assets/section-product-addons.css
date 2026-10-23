@@ -129,10 +129,10 @@
 }
 
 .product-addons__card-item .card-product__rating-slot {
-  min-height: 2.2rem;
+  min-height: 1.6rem;
   display: flex;
   align-items: center;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.3rem;
 }
 
 .product-addons__card-item .quick-add {
