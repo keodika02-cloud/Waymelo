@@ -115,10 +115,24 @@
 }
 
 .product-addons__card-item .card__heading {
-  font-size: 1.45rem;
-  line-height: 1.35;
-  margin: 0 0 6px;
-  font-weight: 600;
+  font-size: 1.5rem !important;
+  line-height: 1.35 !important;
+  min-height: 2.7em !important;
+  max-height: 2.7em !important;
+  margin: 0 0 6px !important;
+  font-weight: 600 !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.product-addons__card-item .card-product__rating-slot {
+  min-height: 2.2rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.6rem;
 }
 
 .product-addons__card-item .quick-add {

@@ -261,7 +261,13 @@
       "settings": {
         "heading": "Add These to Your Order",
         "subtitle": "Choose any. Each one is 10% off.",
-        "products": [],
+        "products": [
+          "little-hugs-toy-straps-for-baby-5pcs",
+          "termichy-stackable-formula-dispenser-portable",
+          "portable-baby-sound-machine-sleep-soother",
+          "insulated-breast-milk-cooler-bag-with-ice-pack",
+          "babyease-wearable-nursing-pillow-for-moms-copy"
+        ],
         "button_label": "Add & Save",
         "discount_percentage": 10,
         "card_width": 230,
@@ -350,12 +356,39 @@
         "page_width": 1000,
         "padding_top": 48,
         "padding_bottom": 48,
-        "background_color": "#FFFFFF"
+        "background_color": "#ffffff"
       }
     },
     "blocky_image_video_slider_7cgTND": {
       "type": "blocky-image-video-slider",
       "blocks": {
+        "video_CfJfjD": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Watch Diaper Bag Backpack with Changing Station on Amazon Live_nomos8k_30.0fps_3840x2160.mp4",
+            "autoplay": true,
+            "text": "",
+            "text_alignment": "center"
+          }
+        },
+        "video_A7d3Rx": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Portable Baby Sound Machine [White Noise for Babies Kids Adults][Sleep Soother][Timer Function][12 Soothing Sounds] 15 Hours Battery Life, Travel,Registry Toys,Gifts,Shower,Clips on Baby StrollerPractical little item.mp4",
+            "autoplay": true,
+            "text": "",
+            "text_alignment": "center"
+          }
+        },
+        "video_wKxpLN": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/123.mp4",
+            "autoplay": true,
+            "text": "",
+            "text_alignment": "center"
+          }
+        },
         "video_ynYbqY": {
           "type": "video",
           "settings": {
@@ -367,6 +400,9 @@
         }
       },
       "block_order": [
+        "video_CfJfjD",
+        "video_A7d3Rx",
+        "video_wKxpLN",
         "video_ynYbqY"
       ],
       "name": "Blocky Image/Video Slider",
@@ -631,9 +667,9 @@
         "body_size": 16,
         "body_color": "#000000",
         "button_label": "<p><strong>Contact Us</strong></p>",
-        "button_link": "",
+        "button_link": "shopify://pages/contact",
         "button_border_radius": "curved",
-        "button_background_color": "#000000",
+        "button_background_color": "#7A5168",
         "button_text_color": "#ffffff",
         "faq_layout": "row",
         "question_padding": 15,
@@ -658,6 +694,26 @@
         "page_width": 1200,
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "179273719320efd208": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_xn8BCH": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_xn8BCH"
+      ],
+      "settings": {
+        "include_margins": true
       }
     },
     "newsletter_wpX8Je": {
@@ -693,26 +749,6 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
-    },
-    "179273719320efd208": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_xn8BCH": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "sample_data",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "empty_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_xn8BCH"
-      ],
-      "settings": {
-        "include_margins": true
-      }
     }
   },
   "order": [
@@ -725,7 +761,7 @@
     "image_with_text_B3jyr7",
     "product_showcase_CHwXjp",
     "blocky_faq_GWWtKj",
-    "newsletter_wpX8Je",
-    "179273719320efd208"
+    "179273719320efd208",
+    "newsletter_wpX8Je"
   ]
 }
