@@ -664,7 +664,7 @@
 
 /* Card Price Standard Styling */
 .card-wrapper .price {
-  min-height: 4rem;
+  min-height: 4.2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -678,13 +678,22 @@
   width: 100%;
 }
 
-.card-wrapper .price__regular {
-  display: flex;
-  align-items: baseline;
-  min-height: 2rem;
+.card-wrapper .price:not(.price--on-sale) .price__sale {
+  display: none !important;
 }
 
-.card-wrapper .price__sale {
+.card-wrapper .price:not(.price--on-sale) .price__regular {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 3.8rem;
+}
+
+.card-wrapper .price--on-sale .price__regular {
+  display: none !important;
+}
+
+.card-wrapper .price--on-sale .price__sale {
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
@@ -716,5 +725,7 @@
   font-weight: 700 !important;
   color: #2f2530 !important;
   line-height: 1.2;
+  margin: 0 !important;
 }
+
 
