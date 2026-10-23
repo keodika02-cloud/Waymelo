@@ -256,7 +256,7 @@
         "media_shadow": false,
         "show_media_border": false,
         "media_border_color": "#000000",
-        "thumbnail_layout": "stack",
+        "thumbnail_layout": "carousel",
         "thumbnail_slides_per_column": 5,
         "thumbnail_border_radius": 6,
         "thumbnail_border_color": "#d8d8d8",

@@ -115,7 +115,7 @@
                 assign thumbnail_half_gap = thumbnail_gap | divided_by: 2.0
               -%}
               <blocky-media-slider
-                class="blocky-featured-product__thumb-slider glide ivs-{{ section.id }}-thumbs is-loading"
+                class="blocky-featured-product__thumb-slider glide ivs-{{ section.id }}-thumbs is-loading{% if product.media.size > visible_thumbnail_count %} has-nav{% endif %}"
                 data-id="{{ section.id }}-thumbs"
                 data-size="{{ product.media.size }}"
                 slide-size="{{ visible_thumbnail_count }}"
@@ -2627,6 +2627,22 @@
           thumb.classList.toggle('is-active', active);
           thumb.setAttribute('aria-current', active ? 'true' : 'false');
         });
+
+        const thumbSlider = this.querySelector('.blocky-featured-product__thumb-slider');
+        if (thumbSlider) {
+          const glideId = 'ivs-' + thumbSlider.dataset.id;
+          const glideInstance = window[glideId];
+          const activeThumb = this.querySelector(`.glide__slide:not(.glide__slide--clone) [data-blocky-product-thumb="${mediaId}"]`);
+          const slide = activeThumb?.closest('.glide__slide');
+          const track = slide?.parentElement;
+          if (glideInstance && slide && track && typeof glideInstance.go === 'function') {
+            const originalSlides = Array.from(track.children).filter((el) => !el.classList.contains('glide__slide--clone'));
+            const targetIndex = originalSlides.indexOf(slide);
+            if (targetIndex >= 0) {
+              glideInstance.go(`=${targetIndex}`);
+            }
+          }
+        }
       }
 
       changeQuantity(delta) {
