@@ -136,25 +136,34 @@
   pointer-events: auto !important;
 }
 
+.quick-add-modal.waymelo-variant-modal .quick-add-modal__content.waymelo-variant-popup,
 .waymelo-variant-popup {
   position: relative !important;
   top: auto !important;
   left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
   transform: scale(0.95) translateY(12px) !important;
-  margin: 0 auto !important;
+  margin: auto !important;
+  margin-top: auto !important;
+  margin-bottom: auto !important;
   width: 100% !important;
-  max-width: 780px !important;
-  max-height: 90vh !important;
+  max-width: 760px !important;
+  max-height: calc(88vh - 24px) !important;
   background: #ffffff !important;
   border-radius: 24px !important;
   border: 1px solid rgba(122, 81, 104, 0.14) !important;
   box-shadow: 0 24px 60px rgba(35, 20, 28, 0.26), 0 4px 16px rgba(0, 0, 0, 0.06) !important;
   overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
   display: flex !important;
   flex-direction: column !important;
+  box-sizing: border-box !important;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
+.quick-add-modal.waymelo-variant-modal[open] .quick-add-modal__content.waymelo-variant-popup,
 .quick-add-modal.waymelo-variant-modal[open] .waymelo-variant-popup {
   transform: scale(1) translateY(0) !important;
 }
@@ -163,19 +172,20 @@
   position: absolute !important;
   top: 14px !important;
   right: 14px !important;
-  width: 38px !important;
-  height: 38px !important;
+  width: 36px !important;
+  height: 36px !important;
   border-radius: 50% !important;
   background: #f7f3f6 !important;
-  border: 1px solid rgba(122, 81, 104, 0.14) !important;
+  border: 1px solid rgba(122, 81, 104, 0.16) !important;
   color: #30243a !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   cursor: pointer !important;
-  z-index: 10 !important;
+  z-index: 20 !important;
   transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease !important;
   padding: 0 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
 }
 
 .waymelo-popup-close:hover {
@@ -185,34 +195,47 @@
 }
 
 .waymelo-popup-close svg {
-  width: 15px !important;
-  height: 15px !important;
+  width: 14px !important;
+  height: 14px !important;
 }
 
 .waymelo-popup-container {
   display: grid;
-  grid-template-columns: 310px 1fr;
-  gap: 28px;
-  padding: 28px;
-  overflow-y: auto;
-  max-height: calc(90vh - 2px);
+  grid-template-columns: 285px 1fr;
+  gap: 24px;
+  padding: 24px;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  max-height: calc(88vh - 24px);
   box-sizing: border-box;
+  width: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(122, 81, 104, 0.25) transparent;
 }
 
 /* Custom slim scrollbar */
 .waymelo-popup-container::-webkit-scrollbar {
   width: 6px;
 }
+.waymelo-popup-container::-webkit-scrollbar-track {
+  background: transparent;
+}
 .waymelo-popup-container::-webkit-scrollbar-thumb {
   background: rgba(122, 81, 104, 0.25);
   border-radius: 10px;
+}
+.waymelo-popup-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(122, 81, 104, 0.45);
 }
 
 /* Media Column */
 .waymelo-popup-media-col {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .waymelo-popup-image-wrapper {
@@ -236,48 +259,60 @@
 
 .waymelo-popup-gallery-strip {
   display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 4px;
+  gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 2px 0;
 }
 
 .waymelo-popup-thumb-btn {
-  width: 52px;
-  height: 52px;
-  min-width: 52px;
-  border-radius: 12px;
+  flex: 1 1 0;
+  width: auto;
+  min-width: 0;
+  max-width: 46px;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  border-radius: 10px;
   overflow: hidden;
   border: 2px solid transparent;
   padding: 0;
   background: #fbf8fa;
   cursor: pointer;
+  flex-shrink: 1;
   transition: border-color 0.2s ease, transform 0.2s ease;
+  box-sizing: border-box;
 }
 
 .waymelo-popup-thumb-btn.is-active {
   border-color: #7a5168;
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .waymelo-popup-thumb-btn img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 /* Info Column */
 .waymelo-popup-info-col {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding-right: 8px;
+  gap: 14px;
+  padding-right: 0;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .waymelo-popup-badge-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: flex-start;
+  gap: 10px;
+  padding-right: 48px;
+  flex-wrap: wrap;
 }
 
 .waymelo-popup-tag {
@@ -577,10 +612,12 @@
 
 /* Mobile responsive */
 @media screen and (max-width: 749px) {
+  .quick-add-modal.waymelo-variant-modal .quick-add-modal__content.waymelo-variant-popup,
   .waymelo-variant-popup {
     max-width: 100% !important;
     border-radius: 20px 20px 0 0 !important;
     max-height: 85vh !important;
+    margin: 0 !important;
   }
   
   .quick-add-modal.waymelo-variant-modal {
@@ -592,11 +629,18 @@
     grid-template-columns: 1fr;
     gap: 16px;
     padding: 20px 16px 24px;
+    max-height: 85vh;
   }
 
   .waymelo-popup-media-col {
     max-width: 220px;
     margin: 0 auto;
+    width: 100%;
+  }
+
+  .waymelo-popup-thumb-btn {
+    min-width: 34px;
+    max-width: 44px;
   }
 
   .waymelo-popup-title {
