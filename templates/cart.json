@@ -1,0 +1,72 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "cart-items": {
+      "type": "main-cart-items",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "cart-footer": {
+      "type": "main-cart-footer",
+      "blocks": {
+        "subtotal": {
+          "type": "subtotal",
+          "settings": {}
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "subtotal",
+        "buttons"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 20,
+        "padding_bottom": 40
+      }
+    },
+    "17924288795f7dc82c": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "1792517018219ef975": {
+      "type": "apps",
+      "blocks": {
+        "upsell_com_ex_reconvert_slot_V7DK4r": {
+          "type": "shopify://apps/upsell-com-ex-reconvert/blocks/slot/72c64c30-2f7c-4a71-ae4c-efd1d5d1d2e2",
+          "settings": {
+            "slot_id": "1"
+          }
+        }
+      },
+      "block_order": [
+        "upsell_com_ex_reconvert_slot_V7DK4r"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "cart-items",
+    "cart-footer",
+    "17924288795f7dc82c",
+    "1792517018219ef975"
+  ]
+}
