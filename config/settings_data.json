@@ -147,7 +147,10 @@
         "settings": {
           "label": "Need Help?",
           "link": "/pages/contact",
-          "open_in_new_tab": true
+          "open_in_new_tab": true,
+          "show_icon": false,
+          "position_mobile": "bottom_left",
+          "position_desktop": "bottom_left"
         }
       }
     },
