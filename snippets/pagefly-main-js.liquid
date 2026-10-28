@@ -1,4 +1,4 @@
-
+{% comment %}theme-check-disable OrphanedSnippet, RemoteAsset{% endcomment %}
   {% if shop.metafields.pagefly.acceptTracking or shop.metafields.pagefly.pfAnalyticsEnabled.value %}
   {% if shop.metafields.pagefly.measurementId %}
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -33,11 +33,11 @@
         pf_page_subject_id: '{{ page.id }}',
         {% if template.name == 'product' %}
           
-    {% assign initial_image_url = product.featured_image | img_url %}
+    {% assign initial_image_url = product.featured_image | image_url: width: 1000 %}
     {% assign dynamic_image_path = initial_image_url %}
-    {% assign BASE_URL = "//cdn.shopify.com/s/files/" %}
-    {% if initial_image_url and initial_image_url contains BASE_URL %}
-      {% assign image_paths = initial_image_url | split: BASE_URL %}
+    {% assign base_url = "//cdn.shopify.com/s/files/" %}
+    {% if initial_image_url and initial_image_url contains base_url %}
+      {% assign image_paths = initial_image_url | split: base_url %}
       {% assign dynamic_image_path = image_paths[1] | default: "" %}
     {% endif %}
   
@@ -47,11 +47,11 @@
         {% endif %}
         {% if template.name == 'collection' %}
           
-    {% assign initial_image_url = collection.featured_image | img_url %}
+    {% assign initial_image_url = collection.featured_image | image_url: width: 1000 %}
     {% assign dynamic_image_path = initial_image_url %}
-    {% assign BASE_URL = "//cdn.shopify.com/s/files/" %}
-    {% if initial_image_url and initial_image_url contains BASE_URL %}
-      {% assign image_paths = initial_image_url | split: BASE_URL %}
+    {% assign base_url = "//cdn.shopify.com/s/files/" %}
+    {% if initial_image_url and initial_image_url contains base_url %}
+      {% assign image_paths = initial_image_url | split: base_url %}
       {% assign dynamic_image_path = image_paths[1] | default: "" %}
     {% endif %}
   

@@ -424,6 +424,7 @@
   aspect-ratio: 1 / 1.04;
   overflow: hidden;
   background: #f0ebef;
+  border-radius: 12px;
 }
 
 .wm-product-card__image,
@@ -431,10 +432,27 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transition: transform 350ms ease;
+  transition: transform 350ms ease, opacity 350ms ease;
 }
 
-.wm-product-card:hover .wm-product-card__image {
+.wm-product-card__image--secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.wm-product-card:hover .wm-product-card__image--primary:has(~ .wm-product-card__image--secondary) {
+  opacity: 0;
+}
+
+.wm-product-card:hover .wm-product-card__image--secondary {
+  opacity: 1;
+  transform: scale(1.035);
+}
+
+.wm-product-card:hover .wm-product-card__image:not(.wm-product-card__image--secondary) {
   transform: scale(1.035);
 }
 
@@ -442,29 +460,76 @@
   position: absolute;
   top: 15px;
   left: 15px;
-  padding: 6px 10px;
+  padding: 6px 11px;
   background: var(--wm-paper);
   color: var(--wm-purple);
   font-size: 1rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  z-index: 2;
 }
 
 .wm-product-card__info {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
-  padding-top: 17px;
+  gap: 12px;
+  padding-top: 15px;
+}
+
+.wm-product-card__text-group {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .wm-product-card__title {
-  max-width: 62%;
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.wm-product-card .card-product__judgeme-rating {
+  margin-top: 5px;
+}
+
+.wm-product-card .card-product__judgeme-rating .jdgm-prev-badge {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.wm-product-card .card-product__judgeme-rating .jdgm-prev-badge__stars {
+  display: none !important;
+}
+
+.wm-product-card .card-product__judgeme-rating .jdgm-prev-badge::before {
+  content: '\2605\2605\2605\2605\2605';
+  color: #f59e0b;
+  font-family: Arial, sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.wm-product-card .card-product__judgeme-rating:has(.jdgm-prev-badge[data-number-of-reviews='0']),
+.wm-product-card .card-product__judgeme-rating:has(.jdgm-prev-badge:not([data-number-of-reviews])) {
+  display: none;
+}
+
+.wm-product-card .card-product__judgeme-rating .jdgm-prev-badge__text {
+  display: none;
+}
+
+.wm-product-card .card-product__judgeme-rating .jdgm-prev-badge::after {
+  content: '(' attr(data-number-of-reviews) ')';
+  color: var(--wm-muted);
+  font-size: 1.2rem;
+  line-height: 1;
 }
 
 .wm-product-card__price {
@@ -472,6 +537,7 @@
   font-size: 1.35rem;
   font-weight: 600;
   white-space: nowrap;
+  padding-top: 1px;
 }
 
 .wm-product-card__compare {
