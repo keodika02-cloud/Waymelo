@@ -244,13 +244,15 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   max-width: 5rem;
 }
 
-html {
-  scrollbar-gutter: stable;
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
-@supports not (scrollbar-gutter: stable) {
+@media screen and (min-width: 990px) {
   html {
-    overflow-y: scroll;
+    scrollbar-gutter: stable;
   }
 }
 
@@ -2380,13 +2382,15 @@ input[type='checkbox'] {
 .header {
   display: grid;
   grid-template-areas: 'left-icons heading icons';
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
   align-items: center;
+  max-width: 100%;
 }
 
 @media screen and (max-width: 749px) {
-  .header--has-app {
-    grid-template-columns: auto 1fr auto;
+  .header {
+    grid-template-columns: minmax(4.4rem, auto) minmax(0, 1fr) minmax(4.4rem, auto);
+    column-gap: 0.8rem;
   }
 }
 
@@ -2489,9 +2493,13 @@ input[type='checkbox'] {
 .header__heading-logo {
   height: auto;
   max-width: 100%;
+  width: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .header__heading-logo-wrapper {
+  max-width: 130px;
   width: 100%;
   display: inline-block;
   transition: width 0.3s cubic-bezier(0.52, 0, 0.61, 0.99);

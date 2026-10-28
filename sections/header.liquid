@@ -25,6 +25,36 @@
     margin-left: -1.2rem;
   }
 
+  .header {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  .header__heading-logo-wrapper {
+    max-width: {{ settings.logo_width | default: 130 }}px;
+    width: 100%;
+    display: inline-block;
+  }
+
+  .header__heading-logo {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  @media screen and (max-width: 749px) {
+    .header {
+      grid-template-columns: minmax(4.4rem, auto) minmax(0, 1fr) minmax(4.4rem, auto);
+      column-gap: 0.8rem;
+    }
+
+    .header__heading-logo-wrapper {
+      max-width: clamp(95px, 28vw, 125px);
+    }
+  }
+
   {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
     .scrolled-past-header .header__heading-logo-wrapper {
       width: 75%;
@@ -168,13 +198,18 @@
         <h1 class="header__heading">
       {%- endif -%}
           <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
-            <div class="header__heading-logo-wrapper">
-              {%- assign logo_height = settings.logo_width | times: 329 | divided_by: 1319 | round -%}
+            {%- assign header_logo_width = settings.logo_width | default: 130 -%}
+            {%- if header_logo_width == blank or header_logo_width == 0 -%}
+              {%- assign header_logo_width = 130 -%}
+            {%- endif -%}
+            {%- assign logo_height = header_logo_width | times: 329 | divided_by: 1319 | round -%}
+            <div class="header__heading-logo-wrapper" style="max-width: {{ header_logo_width }}px; width: 100%;">
               <img
                 src="{{ 'waymelo-logo.png' | asset_url }}"
                 class="header__heading-logo motion-reduce"
-                width="{{ settings.logo_width }}"
+                width="{{ header_logo_width }}"
                 height="{{ logo_height }}"
+                style="max-width: {{ header_logo_width }}px; width: 100%; height: auto;"
                 alt="{{ shop.name | escape }}"
                 loading="eager"
                 fetchpriority="high"
@@ -201,13 +236,18 @@
         <h1 class="header__heading">
       {%- endif -%}
           <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
-            <div class="header__heading-logo-wrapper">
-              {%- assign logo_height = settings.logo_width | times: 329 | divided_by: 1319 | round -%}
+            {%- assign header_logo_width = settings.logo_width | default: 130 -%}
+            {%- if header_logo_width == blank or header_logo_width == 0 -%}
+              {%- assign header_logo_width = 130 -%}
+            {%- endif -%}
+            {%- assign logo_height = header_logo_width | times: 329 | divided_by: 1319 | round -%}
+            <div class="header__heading-logo-wrapper" style="max-width: {{ header_logo_width }}px; width: 100%;">
               <img
                 src="{{ 'waymelo-logo.png' | asset_url }}"
                 class="header__heading-logo"
-                width="{{ settings.logo_width }}"
+                width="{{ header_logo_width }}"
                 height="{{ logo_height }}"
+                style="max-width: {{ header_logo_width }}px; width: 100%; height: auto;"
                 alt="{{ shop.name | escape }}"
                 loading="eager"
                 fetchpriority="high"

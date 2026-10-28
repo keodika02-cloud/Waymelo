@@ -269,12 +269,13 @@
         box-sizing: border-box;
         font-size: calc(var(--font-body-scale) * 62.5%);
         min-height: 100%;
-        scrollbar-gutter: stable;
+        overflow-x: hidden;
+        max-width: 100%;
       }
 
-      @supports not (scrollbar-gutter: stable) {
+      @media screen and (min-width: 990px) {
         html {
-          overflow-y: scroll;
+          scrollbar-gutter: stable;
         }
       }
 
@@ -290,6 +291,9 @@
         font-family: var(--font-body-family);
         font-style: var(--font-body-style);
         font-weight: var(--font-body-weight);
+        overflow-x: hidden;
+        max-width: 100%;
+        width: 100%;
       }
 
       @media screen and (min-width: 750px) {
