@@ -361,6 +361,20 @@
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
       if (this.predictiveSearch && this.predictiveSearch.isOpen) return;
+      if (document.body.classList.contains('overflow-hidden')) {
+        this.currentScrollTop = scrollTop;
+        return;
+      }
+      const searchModal = this.header.querySelector('details-modal');
+      if (searchModal && typeof searchModal.isOpen === 'function' && searchModal.isOpen()) {
+        this.currentScrollTop = scrollTop;
+        return;
+      }
+      const cartDrawer = document.querySelector('cart-drawer');
+      if (cartDrawer && cartDrawer.classList.contains('active')) {
+        this.currentScrollTop = scrollTop;
+        return;
+      }
 
       if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
         this.header.classList.add('scrolled-past-header');
@@ -412,7 +426,9 @@
 
     closeSearchModal() {
       this.searchModal = this.searchModal || this.header.querySelector('details-modal');
-      this.searchModal.close(false);
+      if (this.searchModal && typeof this.searchModal.close === 'function') {
+        this.searchModal.close(false);
+      }
     }
   }
 
