@@ -3,19 +3,36 @@
   if featured_collection == blank
     assign featured_collection = collections.all
   endif
+
   assign has_products = false
-  if section.settings.source == 'manual'
+  if section.settings.source == 'product_list' and section.settings.product_list != blank and section.settings.product_list.count > 0
+    assign has_products = true
+  elsif section.settings.source == 'manual' or section.blocks.size > 0
     for block in section.blocks
       if block.settings.product != blank
         assign has_products = true
+        break
       endif
     endfor
   elsif featured_collection.products.size > 0
     assign has_products = true
   endif
+
+  assign view_all_url = section.settings.view_all_link
+  if view_all_url == blank
+    if featured_collection != blank and featured_collection.url != blank
+      assign view_all_url = featured_collection.url
+    else
+      assign view_all_url = routes.all_products_collection_url
+    endif
+  endif
 -%}
 
-<section class="wm-home wm-home__section wm-best-seller" aria-labelledby="WaymeloBestSellerTitle-{{ section.id }}">
+<section
+  class="wm-home wm-home__section wm-best-seller"
+  aria-labelledby="WaymeloProductShowcaseTitle-{{ section.id }}"
+  style="--wm-btn-bg: {{ section.settings.button_color | default: '#0f6838' }};"
+>
   <div class="wm-home__shell">
     <div class="wm-home__section-head">
       <div>
@@ -23,18 +40,27 @@
           <p class="wm-home__eyebrow">{{ section.settings.eyebrow | escape }}</p>
         {%- endif -%}
         {%- if section.settings.heading != blank -%}
-          <h2 class="wm-home__heading" id="WaymeloBestSellerTitle-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+          <h2 class="wm-home__heading" id="WaymeloProductShowcaseTitle-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
         {%- endif -%}
       </div>
     </div>
 
     <div
       class="wm-product-grid wm-best-seller__grid"
-      aria-label="Best seller products"
+      aria-label="{{ section.settings.heading | default: 'Products' | escape }}"
       style="--wm-best-seller-columns: {{ section.settings.columns_desktop }}"
     >
       {%- if has_products -%}
-        {%- if section.settings.source == 'manual' -%}
+        {%- if section.settings.source == 'product_list' and section.settings.product_list != blank -%}
+          {%- for product in section.settings.product_list limit: section.settings.products_to_show -%}
+            {%- render 'card-best-seller',
+              product: product,
+              badge_label: section.settings.badge_text,
+              show_badge: section.settings.show_badge,
+              badge_color: section.settings.badge_color
+            -%}
+          {%- endfor -%}
+        {%- elsif section.settings.source == 'manual' or section.blocks.size > 0 -%}
           {%- assign rendered_count = 0 -%}
           {%- for block in section.blocks -%}
             {%- if rendered_count >= section.settings.products_to_show -%}
@@ -44,7 +70,9 @@
               {%- render 'card-best-seller',
                 product: block.settings.product,
                 badge_label: section.settings.badge_text,
-                show_badge: section.settings.show_badge
+                show_badge: section.settings.show_badge,
+                badge_color: section.settings.badge_color,
+                block_shopify_attributes: block.shopify_attributes
               -%}
               {%- assign rendered_count = rendered_count | plus: 1 -%}
             {%- endif -%}
@@ -54,7 +82,8 @@
             {%- render 'card-best-seller',
               product: product,
               badge_label: section.settings.badge_text,
-              show_badge: section.settings.show_badge
+              show_badge: section.settings.show_badge,
+              badge_color: section.settings.badge_color
             -%}
           {%- endfor -%}
         {%- endif -%}
@@ -71,9 +100,9 @@
       {%- endif -%}
     </div>
 
-    {%- if section.settings.show_view_all and section.settings.view_all_label != blank and section.settings.view_all_link != blank -%}
+    {%- if section.settings.show_view_all and section.settings.view_all_label != blank -%}
       <div class="wm-best-seller__view-all-row">
-        <a class="wm-home__button wm-best-seller__view-all" href="{{ section.settings.view_all_link }}">
+        <a class="wm-best-seller__view-all" href="{{ view_all_url }}">
           {{ section.settings.view_all_label | escape }}
         </a>
       </div>
@@ -83,7 +112,7 @@
 
 {% schema %}
 {
-  "name": "Waymelo best seller",
+  "name": "Waymelo product showcase",
   "tag": "section",
   "class": "section-waymelo-best-seller",
   "settings": [
@@ -94,11 +123,13 @@
       "id": "source",
       "label": "Product source",
       "options": [
-        { "value": "collection", "label": "Collection" },
-        { "value": "manual", "label": "Manual products" }
+        { "value": "manual", "label": "Manual products (blocks)" },
+        { "value": "product_list", "label": "Product list (picker)" },
+        { "value": "collection", "label": "Collection" }
       ],
-      "default": "collection"
+      "default": "manual"
     },
+    { "type": "product_list", "id": "product_list", "label": "Products (select list)", "limit": 12 },
     { "type": "collection", "id": "collection", "label": "Collection" },
     {
       "type": "range",
@@ -112,17 +143,19 @@
     {
       "type": "range",
       "id": "products_to_show",
-      "min": 3,
+      "min": 2,
       "max": 12,
       "step": 1,
       "label": "Products to show",
       "default": 4
     },
     { "type": "checkbox", "id": "show_badge", "label": "Show sale badge", "default": true },
-    { "type": "text", "id": "badge_text", "label": "Badge label", "default": "Sale ends at midnight" },
+    { "type": "text", "id": "badge_text", "label": "Badge label", "default": "SALE ENDS AT MIDNIGHT" },
+    { "type": "color", "id": "badge_color", "label": "Badge color", "default": "#0f6838" },
     { "type": "checkbox", "id": "show_view_all", "label": "Show view all button", "default": true },
     { "type": "text", "id": "view_all_label", "label": "View all label", "default": "View all" },
-    { "type": "url", "id": "view_all_link", "label": "View all link" }
+    { "type": "url", "id": "view_all_link", "label": "View all link" },
+    { "type": "color", "id": "button_color", "label": "Button color", "default": "#0f6838" }
   ],
   "blocks": [
     {
@@ -134,6 +167,16 @@
       ]
     }
   ],
-  "presets": [{ "name": "Waymelo best seller" }]
+  "presets": [
+    {
+      "name": "Waymelo product showcase",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
 }
 {% endschema %}

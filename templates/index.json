@@ -82,6 +82,104 @@
         "autoplay_delay": 5
       }
     },
+    "waymelo_best_seller": {
+      "type": "waymelo-best-seller",
+      "blocks": {
+        "product_1": {
+          "type": "product",
+          "settings": {
+            "product": "wearable-nursing-pillow"
+          }
+        },
+        "product_2": {
+          "type": "product",
+          "settings": {
+            "product": "diaper-bag-backpack-with-changing-station-25l-large-capacity"
+          }
+        },
+        "product_3": {
+          "type": "product",
+          "settings": {
+            "product": "universal-baby-stroller-organizer-bag-with-insulated-cup-holders"
+          }
+        },
+        "product_4": {
+          "type": "product",
+          "settings": {
+            "product": "insulated-breast-milk-cooler-bag-with-ice-pack"
+          }
+        }
+      },
+      "block_order": [
+        "product_1",
+        "product_2",
+        "product_3",
+        "product_4"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "Best Seller",
+        "source": "manual",
+        "columns_desktop": 4,
+        "products_to_show": 4,
+        "show_badge": true,
+        "badge_text": "SALE ENDS AT MIDNIGHT",
+        "badge_color": "#0f6838",
+        "show_view_all": true,
+        "view_all_label": "View all",
+        "view_all_link": "shopify://collections/all",
+        "button_color": "#0f6838"
+      }
+    },
+    "waymelo_new_arrivals": {
+      "type": "waymelo-best-seller",
+      "blocks": {
+        "product_1": {
+          "type": "product",
+          "settings": {
+            "product": "2-pack-stroller-hooks-for-hanging-bags"
+          }
+        },
+        "product_2": {
+          "type": "product",
+          "settings": {
+            "product": "portable-diaper-changing-pad-with-wipes-pocket"
+          }
+        },
+        "product_3": {
+          "type": "product",
+          "settings": {
+            "product": "babygoal-wet-dry-bags-3-pack"
+          }
+        },
+        "product_4": {
+          "type": "product",
+          "settings": {
+            "product": "termichy-stackable-formula-dispenser-portable"
+          }
+        }
+      },
+      "block_order": [
+        "product_1",
+        "product_2",
+        "product_3",
+        "product_4"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "New Arrivals",
+        "source": "manual",
+        "columns_desktop": 4,
+        "products_to_show": 4,
+        "show_badge": true,
+        "badge_text": "SALE ENDS AT MIDNIGHT",
+        "badge_color": "#0f6838",
+        "show_view_all": true,
+        "view_all_label": "View all",
+        "view_all_link": "shopify://collections/all",
+        "button_color": "#0f6838"
+      }
+    },
     "image_with_text_h68zjW": {
       "type": "image-with-text",
       "blocks": {
@@ -371,6 +469,8 @@
   },
   "order": [
     "waymelo_hero",
+    "waymelo_best_seller",
+    "waymelo_new_arrivals",
     "image_with_text_h68zjW",
     "blocky_before_after_slider_x3NhGi",
     "waymelo_products",
