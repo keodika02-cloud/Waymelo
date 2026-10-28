@@ -174,7 +174,8 @@
 
             <span class="caption-large light">{{ block.settings.description | escape }}</span>
 
-            {%- if show_rating -%}
+            <div class="card-product__rating-box">
+{%- if show_rating -%}
               {%- if card_product.metafields.judgeme.badge != blank -%}
                 <div class="card-product__judgeme-rating jdgm-widget jdgm-preview-badge" data-id="{{ card_product.id }}">
                   {{ card_product.metafields.judgeme.badge }}
@@ -215,6 +216,7 @@
               </p>
               {%- endif -%}
             {%- endif -%}
+            </div>
 
             {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
             {%- if card_product.quantity_price_breaks_configured? -%}
