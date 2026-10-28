@@ -212,6 +212,38 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   height: 1em;
 }
 
+/* Base Icon Sizing Constraints to prevent FOUS / layout jumping */
+.icon {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  max-width: 100%;
+  max-height: 100%;
+  vertical-align: middle;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.footer__logo-block__social-link .icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  max-width: 1.8rem;
+  max-height: 1.8rem;
+}
+
+.list-social__item .icon {
+  width: 2.2rem;
+  height: 2.2rem;
+  max-width: 2.2rem;
+  max-height: 2.2rem;
+}
+
+.list-payment__item > svg {
+  max-height: 2.5rem;
+  width: auto;
+  max-width: 5rem;
+}
+
 html {
   scrollbar-gutter: stable;
 }

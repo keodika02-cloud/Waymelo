@@ -24,6 +24,7 @@
         class="footer__logo-block__social-link"
         target="_blank"
         rel="noopener noreferrer"
+        style="width: 3.8rem; height: 3.8rem; min-width: 3.8rem; min-height: 3.8rem; max-width: 3.8rem; max-height: 3.8rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; overflow: hidden;"
       >
         {%- case platform -%}
           {%- when 'facebook' -%}
@@ -59,7 +60,7 @@
   {%- endfor -%}
 {%- endcapture -%}
 {%- if logo_block_social_links != blank -%}
-  <div class="footer__logo-block__social" aria-label="Social media">
+  <div class="footer__logo-block__social" aria-label="Social media" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem;">
     {{ logo_block_social_links }}
   </div>
 {%- endif -%}
