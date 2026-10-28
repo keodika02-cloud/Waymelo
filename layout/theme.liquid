@@ -64,6 +64,9 @@
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'blocky-lys-global.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'glide.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'waymelo-quick-choose.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'blocky-image-video-slider.js' | asset_url }}" defer></script>
     <script src="{{ 'blocky-video.js' | asset_url }}" defer></script>
     {%- if request.page_type == 'index' -%}
@@ -324,6 +327,8 @@
         {{ 'waymelo-collection.css' | asset_url | stylesheet_tag }}
       {%- endif -%}
       {{ 'glide.core.min.css' | asset_url | stylesheet_tag }}
+      {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+      {{ 'waymelo-quick-choose.css' | asset_url | stylesheet_tag }}
       {%- if request.page_type == 'product' -%}
         {{ 'blocky-main-product.css' | asset_url | stylesheet_tag }}
         {{ 'blocky-featured-product.js' | asset_url | preload_tag: as: 'script' }}
