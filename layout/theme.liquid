@@ -486,8 +486,8 @@
           marker.replaceWith(link);
         }
 
-        /* A section shipped as <template data-waymelo-lazy-section> (see sections/apps.liquid,
-           product-showcase.liquid, newsletter.liquid): clone its content into the page. Scripts are
+        /* A section shipped as <template data-waymelo-lazy-section> (see product-showcase.liquid,
+           newsletter.liquid): clone its content into the page. Scripts are
            re-created so they execute exactly once, in document order, after the markup they target. */
         function activateSection(marker) {
           var fragment = document.importNode(marker.content, true);
