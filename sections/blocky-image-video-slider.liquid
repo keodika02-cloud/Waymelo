@@ -14,203 +14,69 @@
     {% render 'blocky-titlel', block: section %}
     {% render 'blocky-bodyl', block: section %}
   </div>
-  {%- liquid
-    assign valid_media_count = 0
-    for block in section.blocks
-      if block.type == 'video' and block.settings.video != blank
-        assign valid_media_count = valid_media_count | plus: 1
-      elsif block.type == 'image' and block.settings.image != blank
-        assign valid_media_count = valid_media_count | plus: 1
-      endif
-    endfor
-
-    assign show_placeholders = false
-    if valid_media_count == 0
-      if request.design_mode
-        assign show_placeholders = true
-        assign valid_media_count = section.blocks.size
-      endif
-    endif
-
-    assign desktop_slides = section.settings.slides_desktop | default: 3
-    if valid_media_count < desktop_slides and valid_media_count > 0
-      assign desktop_slides = valid_media_count
-    endif
-
-    assign mobile_slides = section.settings.slides_mobile | default: 2
-    if valid_media_count < mobile_slides and valid_media_count > 0
-      assign mobile_slides = valid_media_count
-    endif
-  -%}
-  {%- liquid
-    assign container_max_width = section.settings.page_width
-    if valid_media_count == 1
-      assign container_max_width = 440
-    elsif valid_media_count == 2
-      assign container_max_width = 860
-    endif
-  -%}
-
-  {% style %}
-    .ivs-{{ section.id }} .blocky-slider-dots,
-    .ivs-{{ section.id }} .glide__bullets {
-      {% if section.settings.dots_position == 'hidden' or section.settings.dots_position == blank %}
-        display: none !important;
-      {% endif %}
-    }
-    .ivs-media-card-{{ section.id }} {
-      border-radius: 16px;
-      overflow: hidden;
-      {% if section.settings.show_shadow %}
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-      {% endif %}
-    }
-    .ivs-single-wrap-{{ section.id }} {
-      width: 100%;
-      max-width: 420px;
-      margin-inline: auto;
-      padding-inline: 16px;
-      box-sizing: border-box;
-    }
-  {% endstyle %}
-
-  {% capture other_classes %}blocky-desktop-{{ section.settings.media_size }} blocky-mobile-{{ section.settings.mobile_media_size }}{% endcapture %}
-
-  {%- if valid_media_count == 1 -%}
-    <div class="ivs-single-wrap-{{ section.id }}">
-      {% for block in section.blocks %}
-        {%- liquid
-          assign has_media = false
-          if block.type == 'video' and block.settings.video != blank
-            assign has_media = true
-          elsif block.type == 'image' and block.settings.image != blank
-            assign has_media = true
-          endif
-        -%}
-        {%- unless has_media or show_placeholders -%}
-          {%- continue -%}
-        {%- endunless -%}
-        <div class="ivs-media-card-{{ section.id }} blocky-slider-slide-media{% if section.settings.show_shadow %} blocky-shadow{% endif %}" {{ block.shopify_attributes }}>
-          <div class="blocky-ivs-media-container" style="position: relative; border-radius: 16px; overflow: hidden;">
-            {% if block.type == "image" %}
-              {% if block.settings.image %}
-                <img
-                  class="{{ other_classes }}"
-                  src="{{ block.settings.image | image_url: height: 750 }}"
-                  width="{{ block.settings.image.width }}"
-                  height="{{ block.settings.image.height }}"
-                  alt="{{ block.settings.image.alt | escape }}"
-                  loading="lazy"
-                  style="width: 100%; height: auto; display: block; border-radius: 16px;"
-                  {% if block.settings.link %}class="blocky-slider-img-link" data-url={{ block.settings.link }}{% endif %}
-                >  
-              {% else %}
-                {{ 'image' | placeholder_svg_tag: other_classes }}
-              {% endif %}
-            {% endif %}
-            {% if block.type == "video" %}
-              {%- liquid
-                assign block_autoplay = section.settings.autoplay_videos
-                if block_autoplay == nil
-                  assign block_autoplay = true
-                endif
-                if block.settings.autoplay != nil
-                  assign block_autoplay = block.settings.autoplay
-                endif
-              -%}
-              {% render "blocky-video", video: block.settings.video, video_fit: block.settings.video_fit, placeholder: 1, autoplay: block_autoplay, button_color: section.settings.play_button_color, background_button_color: section.settings.play_button_background_color, other_classes: other_classes %} 
-            {% endif %}
-            {% if block.settings.text != blank %}
-              <div class="blocky-ivs-media-text blocky-text-container-mobile-{{ block.settings.text_alignment }} blocky-text-container-desktop-{{ block.settings.text_alignment }}" style="--background-color:{{ block.settings.background_color }}; --text-color: {{ block.settings.text_color }}; text-align: {{ block.settings.text_alignment }}; padding: 12px 16px;"> {{ block.settings.text }} </div>
-            {% endif %}
-          </div>
+  <div class="blocky-slider{% if section.settings.full_screen == false %} blocky-page-width{% endif %}">
+    <blocky-media-slider 
+      class="blocky-ivs-glide ivs-{{ section.id }} glide" data-id={{ section.id }} data-size={{ section.blocks.size }}
+      media-spacing={{ section.settings.media_spacing }} mobile-media-spacing="{{ section.settings.media_spacing | divided_by: 2 }}" slide-size={{ section.settings.slides_desktop }} mobile-slide-size={{ section.settings.slides_mobile }}
+      {% if section.settings.auto_scroll %}data-auto{% endif %}{% if section.settings.show_shadow %} data-shadow{% endif %}
+    >
+      <div class="glide__track{% if section.settings.show_blur %} blocky-slider-slides-blur{% endif %}" data-glide-el="track">
+        <ul class="glide__slides " style="padding-bottom: 10px;">      
+          {% capture other_classes %}blocky-desktop-{{ section.settings.media_size }} blocky-mobile-{{ section.settings.mobile_media_size }}{% endcapture %}
+          {% for block in section.blocks %}
+            <li class="glide__slide blocky-slider-slide blocky-slider-slide-media{% if section.settings.show_shadow %} blocky-shadow{% endif %}" {{ block.shopify_attributes }}>
+              <div class="blocky-ivs-media-container">
+                {% if block.type == "image" %}
+                  {% if block.settings.image %}
+                    <img
+                      class="{{ other_classes }}"
+                      src="{{ block.settings.image | image_url: height: 750 }}"
+                      width="{{ block.settings.image.width }}"
+                      height="{{ block.settings.image.height }}"
+                      alt="{{ block.settings.image.alt | escape }}"
+                      loading="lazy"
+                      {% if block.settings.link %}class="blocky-slider-img-link" data-url={{ block.settings.link }}{% endif %}
+                    >  
+                  {% else %}
+                    {{ 'image' | placeholder_svg_tag: other_classes }}
+                  {% endif %}
+                {% endif %}
+                {% if block.type == "video" %}
+                  {% render "blocky-video", video: block.settings.video, video_fit: block.settings.video_fit, placeholder: 1, autoplay: block.settings.autoplay, button_color: section.settings.play_button_color, background_button_color: section.settings.play_button_background_color, other_classes: other_classes %} 
+                {% endif %}
+                {% if block.settings.text != blank %}
+                  <div class="blocky-ivs-media-text blocky-text-container-mobile-{{ block.settings.text_alignment }} blocky-text-container-desktop-{{ block.settings.text_alignment }}" style="--background-color:{{ block.settings.background_color }}; --text-color: {{ block.settings.text_color }}"> {{ block.settings.text }} </div>
+                {% endif %}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% unless section.settings.arrows_position == "hidden" %}
+        <div class="glide__arrows" data-glide-el="controls">
+          <button class="glide__arrow glide__arrow--next blocky-slider-arrows-center blocky-slider-arrows-left" data-glide-dir="<">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle class="blocky-slider-arrows-circle" cx="12" cy="12" r="11" stroke="fill"/>
+              <path class="blocky-slider-arrows-arrow" d="M13 8l-4 4 4 4" />
+            </svg>               
+          </button>
+          <button class="glide__arrow glide__arrow--next blocky-slider-arrows-center blocky-slider-arrows-right" data-glide-dir=">">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle class="blocky-slider-arrows-circle" cx="12" cy="12" r="11" stroke="fill"/>  
+              <path class="blocky-slider-arrows-arrow" d="M11 8l4 4-4 4" />
+            </svg>
+          </button>
         </div>
-      {% endfor %}
-    </div>
-  {%- else -%}
-    <div class="blocky-slider{% if section.settings.full_screen == false %} blocky-page-width{% endif %}" style="max-width: {{ container_max_width }}px; margin-inline: auto;">
-      <blocky-media-slider 
-        class="blocky-ivs-glide ivs-{{ section.id }} glide" data-id={{ section.id }} data-size={{ valid_media_count }}
-        media-spacing={{ section.settings.media_spacing }} mobile-media-spacing="{{ section.settings.media_spacing | divided_by: 2 }}" slide-size={{ desktop_slides }} mobile-slide-size={{ mobile_slides }}
-        {% if section.settings.auto_scroll and valid_media_count > desktop_slides %}data-auto{% endif %}{% if section.settings.show_shadow %} data-shadow{% endif %}
-      >
-        <div class="glide__track{% if section.settings.show_blur %} blocky-slider-slides-blur{% endif %}" data-glide-el="track">
-          <ul class="glide__slides"{% if valid_media_count <= desktop_slides %} style="justify-content: center; padding-bottom: 10px;"{% else %} style="padding-bottom: 10px;"{% endif %}>      
-            {% for block in section.blocks %}
-              {%- liquid
-                assign has_media = false
-                if block.type == 'video' and block.settings.video != blank
-                  assign has_media = true
-                elsif block.type == 'image' and block.settings.image != blank
-                  assign has_media = true
-                endif
-              -%}
-              {%- unless has_media or show_placeholders -%}
-                {%- continue -%}
-              {%- endunless -%}
-              <li class="glide__slide blocky-slider-slide ivs-media-card-{{ section.id }} blocky-slider-slide-media{% if section.settings.show_shadow %} blocky-shadow{% endif %}" {{ block.shopify_attributes }}>
-                <div class="blocky-ivs-media-container" style="position: relative; border-radius: 16px; overflow: hidden;">
-                  {% if block.type == "image" %}
-                    {% if block.settings.image %}
-                      <img
-                        class="{{ other_classes }}"
-                        src="{{ block.settings.image | image_url: height: 750 }}"
-                        width="{{ block.settings.image.width }}"
-                        height="{{ block.settings.image.height }}"
-                        alt="{{ block.settings.image.alt | escape }}"
-                        loading="lazy"
-                        {% if block.settings.link %}class="blocky-slider-img-link" data-url={{ block.settings.link }}{% endif %}
-                      >  
-                    {% else %}
-                      {{ 'image' | placeholder_svg_tag: other_classes }}
-                    {% endif %}
-                  {% endif %}
-                  {% if block.type == "video" %}
-                    {%- liquid
-                      assign block_autoplay = section.settings.autoplay_videos
-                      if block_autoplay == nil
-                        assign block_autoplay = true
-                      endif
-                      if block.settings.autoplay != nil
-                        assign block_autoplay = block.settings.autoplay
-                      endif
-                    -%}
-                    {% render "blocky-video", video: block.settings.video, video_fit: block.settings.video_fit, placeholder: 1, autoplay: block_autoplay, button_color: section.settings.play_button_color, background_button_color: section.settings.play_button_background_color, other_classes: other_classes %} 
-                  {% endif %}
-                  {% if block.settings.text != blank %}
-                    <div class="blocky-ivs-media-text blocky-text-container-mobile-{{ block.settings.text_alignment }} blocky-text-container-desktop-{{ block.settings.text_alignment }}" style="--background-color:{{ block.settings.background_color }}; --text-color: {{ block.settings.text_color }}"> {{ block.settings.text }} </div>
-                  {% endif %}
-                </div>
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
-        {% if valid_media_count > desktop_slides and section.settings.arrows_position != "hidden" %}
-          <div class="glide__arrows" data-glide-el="controls">
-            <button class="glide__arrow glide__arrow--next blocky-slider-arrows-center blocky-slider-arrows-left" data-glide-dir="<" aria-label="Previous">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle class="blocky-slider-arrows-circle" cx="12" cy="12" r="11" stroke="fill"/>
-                <path class="blocky-slider-arrows-arrow" d="M13 8l-4 4 4 4" />
-              </svg>               
-            </button>
-            <button class="glide__arrow glide__arrow--next blocky-slider-arrows-center blocky-slider-arrows-right" data-glide-dir=">" aria-label="Next">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle class="blocky-slider-arrows-circle" cx="12" cy="12" r="11" stroke="fill"/>  
-                <path class="blocky-slider-arrows-arrow" d="M11 8l4 4-4 4" />
-              </svg>
-            </button>
-          </div>
-        {% endif %}
-        {% if valid_media_count > 1 and section.settings.dots_position != "hidden" and section.settings.dots_position != blank %}
-          <div class="glide__bullets blocky-slider-dots{% if section.settings.dots_position == "slider" %} blocky-slider-dots-slider{% endif %}" data-glide-el="controls[nav]">
-            {% for i in (1..valid_media_count) %}
-              <button class="glide__bullet blocky-slider-dot" data-glide-dir="={{ i | minus: 1 }}" aria-label="Slide {{ i }}"></button>
-            {% endfor %}
-          </div>
-        {% endif %}
-      </blocky-media-slider>            
-    </div>
-  {%- endif -%}
+      {% endunless %}
+      {% unless section.settings.dots_position == "hidden" %}
+      <div class="glide__bullets blocky-slider-dots{% if section.settings.dots_position == "slider" %} blocky-slider-dots-slider{% endif %}" data-glide-el="controls[nav]">
+        {% for i in (1..section.blocks.size) %}
+          <button class="glide__bullet blocky-slider-dot" data-glide-dir="={{ i | minus: 1 }}"></button>
+        {% endfor %}
+      </div>
+      {% endunless %}
+    </blocky-media-slider>            
+  </div>
 </div>
 
 {% schema %}
@@ -274,13 +140,6 @@
       "type": "checkbox",
       "id": "auto_scroll",
       "label": "Enable auto scroll",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "autoplay_videos",
-      "label": "Tự động chạy video như GIF",
-      "info": "Tự động phát lặp lại không tiếng như ảnh động GIF",
       "default": true
     },
     {
@@ -477,7 +336,7 @@
           "label": "Over the slider"
         }
       ],
-      "default": "hidden",
+      "default": "under",
       "label": "Dots position"
     },
     {
@@ -600,8 +459,8 @@
         {
           "type": "checkbox",
           "id": "autoplay",
-          "label": "Autoplay (Tự chạy như GIF)",
-          "default": true,
+          "label": "Autoplay",
+          "default": false,
         },
         {
           "type": "richtext",

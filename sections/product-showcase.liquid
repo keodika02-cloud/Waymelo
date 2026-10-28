@@ -1,12 +1,37 @@
-{{ 'section-product-showcase.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'quick-add.css' | asset_url | stylesheet_tag }}
-{{ 'waymelo-collection.css' | asset_url | stylesheet_tag }}
-{{ 'waymelo-quick-choose.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'waymelo-quick-choose.js' | asset_url }}" defer="defer"></script>
+{%- liquid
+  # Lazy HTML: for real visitors the whole section ships inside an inert <template>, so its
+  # scripts, stylesheets and media do nothing until the loader in layout/theme.liquid activates
+  # it (when the section comes within ~1200px of the viewport). Rendered normally in the theme
+  # editor and when the section sits at the top of a page (section.index <= 2). Only sections
+  # without SEO value use this.
+  assign waymelo_lazy_html = true
+  if request.design_mode
+    assign waymelo_lazy_html = false
+  endif
+  if section.index == blank or section.index <= 2
+    assign waymelo_lazy_html = false
+  endif
+-%}
+{%- if waymelo_lazy_html -%}
+  <div data-waymelo-lazy-placeholder style="min-height: 600px" aria-hidden="true"></div>
+  <template data-waymelo-lazy-section>
+{%- endif -%}
+{%- liquid
+  assign waymelo_css_eager = false
+  if section.index == blank or section.index <= 2
+    assign waymelo_css_eager = true
+  endif
+-%}
+{% render 'waymelo-lazy-css', files: 'section-product-showcase.css,component-card.css,component-price.css,quick-add.css,waymelo-collection.css,waymelo-quick-choose.css', eager: waymelo_css_eager %}
+{%- if request.page_type == 'product' -%}
+  <template data-waymelo-lazy-script data-src="{{ 'product-form.js' | asset_url }}"></template>
+  <template data-waymelo-lazy-script data-src="{{ 'quick-add.js' | asset_url }}"></template>
+  <template data-waymelo-lazy-script data-src="{{ 'waymelo-quick-choose.js' | asset_url }}"></template>
+{%- else -%}
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'waymelo-quick-choose.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
 
 {%- liquid
   assign showcase_products = section.settings.products
@@ -53,7 +78,8 @@
             lazy_load: true,
             skip_styles: skip_card_product_styles,
             section_id: section.id,
-            quick_add: 'standard'
+            quick_add: 'standard',
+            use_variant_popup: true
           %}
         </article>
         {%- assign skip_card_product_styles = true -%}
@@ -76,6 +102,10 @@
     {%- endif -%}
   </div>
 </section>
+
+{%- if waymelo_lazy_html -%}
+  </template>
+{%- endif -%}
 
 {% schema %}
 {

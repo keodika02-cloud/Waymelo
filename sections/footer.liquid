@@ -1,9 +1,11 @@
 {% comment %}theme-check-disable UndefinedObject{% endcomment %}
-{{ 'section-footer.css' | asset_url | stylesheet_tag }}
-{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
-{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
-{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
-{{ 'component-list-social.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign waymelo_css_eager = false
+  if false
+    assign waymelo_css_eager = true
+  endif
+-%}
+{% render 'waymelo-lazy-css', files: 'section-footer.css,component-newsletter.css,component-list-menu.css,component-list-payment.css,component-list-social.css', eager: waymelo_css_eager %}
 
 {%- style -%}
   .footer {
@@ -255,25 +257,30 @@
 
         {%- for block in logo_follow_blocks -%}
           <div class="footer__logo-block" {{ block.shopify_attributes }}>
-            {%- if block.settings.logo_image != blank -%}
-              {%- assign logo_width_2x = block.settings.logo_width | times: 2 | at_most: 5760 -%}
-              <div
-                class="footer__logo-block__image-wrapper"
-                style="max-width: min(100%, {{ block.settings.logo_width }}px);"
+            {%- liquid
+              assign footer_logo_width = block.settings.logo_width | default: settings.logo_width
+              assign footer_logo_height = footer_logo_width | times: 329 | divided_by: 1319 | round
+            -%}
+            <div
+              class="footer__logo-block__image-wrapper"
+              style="max-width: min(100%, {{ footer_logo_width }}px);"
+            >
+              <img
+                src="{{ 'waymelo-logo.png' | asset_url }}"
+                class="footer__logo-block__image"
+                alt="{{ shop.name | escape }}"
+                width="{{ footer_logo_width }}"
+                height="{{ footer_logo_height }}"
+                loading="lazy"
               >
-                <img
-                  srcset="{{ block.settings.logo_image | image_url: width: block.settings.logo_width }}, {{ block.settings.logo_image | image_url: width: logo_width_2x }} 2x"
-                  src="{{ block.settings.logo_image | image_url: width: block.settings.logo_width }}"
-                  alt="{{ block.settings.logo_image.alt | default: shop.name | escape }}"
-                  width="{{ block.settings.logo_image.width }}"
-                  height="{{ block.settings.logo_image.height }}"
-                >
-              </div>
-            {%- endif -%}
+            </div>
             {%- if block.settings.enable_follow_on_shop and shop.features.follow_on_shop? -%}
               <div class="footer__logo-block__follow">
                 {{ shop | login_button: action: 'follow' }}
               </div>
+            {%- endif -%}
+            {%- if block.settings.show_social_icons and has_social_icons -%}
+              {%- render 'footer-logo-block-social-icons' -%}
             {%- endif -%}
           </div>
         {%- endfor -%}
@@ -381,9 +388,9 @@
         {%- if trust_logos_blocks.size > 0 -%}
           <div class="footer-trust-logos-simple" {{ trust_logos_blocks.first.shopify_attributes }}>
             {%- for block in trust_logos_blocks -%}
-              {%- if block.settings.trustpilot_enable -%}
+              {%- if block.settings.trustpilot_enable and block.settings.trustpilot_url != blank and block.settings.trustpilot_url != 'https://www.trustpilot.com' -%}
                 <a
-                  href="{{ block.settings.trustpilot_url | default: 'https://www.trustpilot.com' }}"
+                  href="{{ block.settings.trustpilot_url }}"
                   target="_blank"
                   rel="noopener"
                   class="simple-trustpilot-line"
@@ -657,6 +664,12 @@
           "id": "enable_follow_on_shop",
           "default": true,
           "label": "Show follow on shop button"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social_icons",
+          "default": true,
+          "label": "Show social icons"
         }
       ]
     },

@@ -11,11 +11,12 @@
 {%- endif -%}
 
 {%- if settings.cart_type == "drawer" -%}
+  {%- comment -%} Must stay render-blocking: it positions the drawer (fixed, off-screen). Loaded async it briefly occupies space above the header. {%- endcomment -%}
   {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
-  {{ 'component-cart.css' | asset_url | stylesheet_tag }}
-  {{ 'component-totals.css' | asset_url | stylesheet_tag }}
-  {{ 'component-price.css' | asset_url | stylesheet_tag }}
-  {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+  <link rel="stylesheet" href="{{ 'component-cart.css' | asset_url }}" media="print" onload="this.media='all'"><noscript>{{ 'component-cart.css' | asset_url | stylesheet_tag }}</noscript>
+  <link rel="stylesheet" href="{{ 'component-totals.css' | asset_url }}" media="print" onload="this.media='all'"><noscript>{{ 'component-totals.css' | asset_url | stylesheet_tag }}</noscript>
+  <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'"><noscript>{{ 'component-price.css' | asset_url | stylesheet_tag }}</noscript>
+  <link rel="stylesheet" href="{{ 'component-discounts.css' | asset_url }}" media="print" onload="this.media='all'"><noscript>{{ 'component-discounts.css' | asset_url | stylesheet_tag }}</noscript>
 {%- endif -%}
 
 <style>
@@ -418,6 +419,37 @@
   customElements.define('sticky-header', StickyHeader);
 {% endjavascript %}
 
+{%- liquid
+  assign organization_same_as = ''
+  if settings.social_twitter_link != blank
+    assign organization_same_as = organization_same_as | append: settings.social_twitter_link | append: ','
+  endif
+  if settings.social_facebook_link != blank
+    assign organization_same_as = organization_same_as | append: settings.social_facebook_link | append: ','
+  endif
+  if settings.social_pinterest_link != blank
+    assign organization_same_as = organization_same_as | append: settings.social_pinterest_link | append: ','
+  endif
+  if settings.social_instagram_link != blank
+    assign organization_same_as = organization_same_as | append: settings.social_instagram_link | append: ','
+  endif
+  if settings.social_tiktok_link != blank
+    assign organization_same_as = organization_same_as | append: settings.social_tiktok_link | append: ','
+  endif
+  if settings.social_tumblr_link != blank
+    assign organization_same_as = organization_same_as | append: settings.social_tumblr_link | append: ','
+  endif
+  if settings.social_snapchat_link != blank
+    assign organization_same_as = organization_same_as | append: settings.social_snapchat_link | append: ','
+  endif
+  if settings.social_youtube_link != blank
+    assign organization_same_as = organization_same_as | append: settings.social_youtube_link | append: ','
+  endif
+  if settings.social_vimeo_link != blank
+    assign organization_same_as = organization_same_as | append: settings.social_vimeo_link | append: ','
+  endif
+  assign organization_same_as = organization_same_as | remove_last: ','
+-%}
 <script type="application/ld+json">
   {
     "@context": "http://schema.org",
@@ -426,18 +458,15 @@
     {% if settings.logo %}
       "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
     {% endif %}
-    "sameAs": [
-      {{ settings.social_twitter_link | json }},
-      {{ settings.social_facebook_link | json }},
-      {{ settings.social_pinterest_link | json }},
-      {{ settings.social_instagram_link | json }},
-      {{ settings.social_tiktok_link | json }},
-      {{ settings.social_tumblr_link | json }},
-      {{ settings.social_snapchat_link | json }},
-      {{ settings.social_youtube_link | json }},
-      {{ settings.social_vimeo_link | json }}
-    ],
-    "url": {{ request.origin | append: page.url | json }}
+    {% if organization_same_as != blank %}
+      "sameAs": [
+        {%- assign organization_urls = organization_same_as | split: ',' -%}
+        {%- for organization_url in organization_urls -%}
+          {{ organization_url | json }}{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ],
+    {% endif %}
+    "url": {{ request.origin | json }}
   }
 </script>
 

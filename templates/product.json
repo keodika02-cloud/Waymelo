@@ -42,6 +42,43 @@
             "text_alignment": "flex-start"
           }
         },
+        "delivery_mDkweb": {
+          "type": "delivery",
+          "settings": {
+            "destination_label": "Deliver to:",
+            "modal_title": "Update Your Preferences",
+            "modal_note": "Select your shipping country",
+            "save_button_text": "Save & Continue",
+            "policy_text": "Learn more about our <strong>Shipping Policy</strong>",
+            "policy_url": "shopify://policies/shipping-policy",
+            "arrival_text": "Order today, get it as early as: [DATE]",
+            "earliest_days": 7,
+            "latest_days": 10,
+            "method_title": "Delivery Method",
+            "method_name": "Standard Shipping:",
+            "method_range": "(7 - 10 business days)",
+            "placed_label": "Order Placed:",
+            "ships_label": "Order Ships:",
+            "delivered_label": "Delivered:",
+            "ship_start_days": 1,
+            "ship_end_days": 2,
+            "note_1": "Orders can be cancelled or modified within 2 hours after being placed.",
+            "note_2": "Canvas/ Poster/ Metal Sign: These packages cannot be delivered to a PO box.",
+            "note_3": "",
+            "date_format": "month %e",
+            "day_label": "%A",
+            "month_label": "%B",
+            "text_color": "#4a4a4a",
+            "strong_color": "#111111",
+            "heading_color": "#111111",
+            "bg_color": "#ffffff",
+            "border_color": "#e5e5e5",
+            "radius": 16,
+            "text_size": 14,
+            "line_height": 0,
+            "letter_spacing": 0
+          }
+        },
         "sku_6RNqHT": {
           "type": "sku",
           "settings": {
@@ -149,7 +186,7 @@
         "collapsible_tab_fCRPAE": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Collapsible row",
+            "heading": "Product Details",
             "icon": "check",
             "heading_size": 16,
             "content": "",
@@ -165,42 +202,10 @@
         "collapsible_tab_zQYhnn": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Collapsible row",
+            "heading": "Return & Refund Policy",
             "icon": "check",
             "heading_size": 16,
-            "content": "",
-            "content_size": 14,
-            "page": "",
-            "open_by_default": false,
-            "bg_color": "",
-            "text_color": "",
-            "row_padding": 8,
-            "letter_spacing": 0
-          }
-        },
-        "collapsible_tab_kG9ddh": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Collapsible row",
-            "icon": "check",
-            "heading_size": 16,
-            "content": "",
-            "content_size": 14,
-            "page": "",
-            "open_by_default": false,
-            "bg_color": "",
-            "text_color": "",
-            "row_padding": 8,
-            "letter_spacing": 0
-          }
-        },
-        "collapsible_tab_gQF4yb": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Collapsible row",
-            "icon": "check",
-            "heading_size": 16,
-            "content": "",
+            "content": "<p>🔄 <strong>Hassle-Free Returns</strong> – If you're not satisfied, you can return your item within 30 days.<br/>💰 <strong>Money-Back Guarantee</strong> – Get a full refund or exchange if your item arrives damaged or defective.<br/>📦 <strong>Easy Process</strong> – Simply contact our support team, and we’ll guide you through the steps.<br/>📩 <strong>Customer Support</strong> – Have questions? We’re here to help!<br/>For full details, please check our Return Policy or contact us anytime.</p>",
             "content_size": 14,
             "page": "",
             "open_by_default": false,
@@ -215,6 +220,7 @@
         "title_PrTbFL",
         "judge_me_reviews_preview_badge_i8yNUJ",
         "price_7MJDCJ",
+        "delivery_mDkweb",
         "sku_6RNqHT",
         "description_qVEDpt",
         "variant_picker_UQbGqh",
@@ -223,9 +229,7 @@
         "guarantee_badge_EPnTJn",
         "review_carousel_4GyGbL",
         "collapsible_tab_fCRPAE",
-        "collapsible_tab_zQYhnn",
-        "collapsible_tab_kG9ddh",
-        "collapsible_tab_gQF4yb"
+        "collapsible_tab_zQYhnn"
       ],
       "name": "BKY Main Product",
       "settings": {
@@ -413,14 +417,13 @@
         "body_text": "",
         "body_color": "#000000",
         "auto_scroll": true,
-        "autoplay_videos": true,
         "arrow-background-color": "#000000",
         "arrow-carot-color": "#ffffff",
         "dot-color": "#000000",
         "play_button_color": "#ffffff",
         "play_button_background_color": "#000000",
         "media_size": "long",
-        "slides_desktop": 3,
+        "slides_desktop": 4,
         "full_screen": false,
         "desktop_content_alignment": "center",
         "mobile_media_size": "long",
@@ -482,6 +485,25 @@
         "mobile_content_alignment": "left",
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "product_showcase_CHwXjp": {
+      "type": "product-showcase",
+      "name": "Product showcase",
+      "settings": {
+        "heading": "New Arrivals",
+        "description": "<p>Discover our latest products and fresh new designs.</p>",
+        "heading_size": "h1",
+        "collection": "baby-feeding-travel-essentials",
+        "products": [],
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "1",
+        "show_view_all": true,
+        "view_all_label": "View all",
+        "color_scheme": "",
+        "padding_top": 48,
+        "padding_bottom": 48
       }
     },
     "image_with_text_jzngim": {
@@ -578,7 +600,7 @@
         "padding_bottom": 36
       }
     },
-    "product_showcase_CHwXjp": {
+    "product_showcase_EjKUHU": {
       "type": "product-showcase",
       "name": "Product showcase",
       "settings": {
@@ -591,7 +613,7 @@
         "columns_desktop": 4,
         "columns_mobile": "1",
         "show_view_all": true,
-        "view_all_label": "View all",
+        "view_all_label": "",
         "color_scheme": "",
         "padding_top": 48,
         "padding_bottom": 48
@@ -669,7 +691,7 @@
         "button_label": "<p><strong>Contact Us</strong></p>",
         "button_link": "shopify://pages/contact",
         "button_border_radius": "curved",
-        "button_background_color": "#7A5168",
+        "button_background_color": "#7a5168",
         "button_text_color": "#ffffff",
         "faq_layout": "row",
         "question_padding": 15,
@@ -749,6 +771,21 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
+    },
+    "1792860416bb0922ad": {
+      "type": "apps",
+      "blocks": {
+        "upsell_com_ex_reconvert_product_recommendations_km8QKY": {
+          "type": "shopify://apps/upsell-com-ex-reconvert/blocks/product-recommendations/72c64c30-2f7c-4a71-ae4c-efd1d5d1d2e2",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "upsell_com_ex_reconvert_product_recommendations_km8QKY"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
@@ -757,11 +794,13 @@
     "blocky_product_feature_3_LUxDbC",
     "blocky_image_video_slider_7cgTND",
     "image_with_text_AziAqy",
+    "product_showcase_CHwXjp",
     "image_with_text_jzngim",
     "image_with_text_B3jyr7",
-    "product_showcase_CHwXjp",
+    "product_showcase_EjKUHU",
     "blocky_faq_GWWtKj",
     "179273719320efd208",
-    "newsletter_wpX8Je"
+    "newsletter_wpX8Je",
+    "1792860416bb0922ad"
   ]
 }

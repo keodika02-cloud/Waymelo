@@ -61,7 +61,7 @@ if (!customElements.get('blocky-media-slider')) {
         const autoplayInterval = this.hasAttribute("data-auto-interval") ? parseInt(this.getAttribute("data-auto-interval")) : 2000;
 
         window[glideId] = new Glide(`.${ glideId }`, {
-          type: size > viewSize ? 'carousel' : "slider",
+          type: size >= viewSize ? 'carousel' : "slider",
           perView: viewSize,
           focusAt: 0,
           peek: peek,

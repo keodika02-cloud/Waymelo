@@ -9,6 +9,22 @@
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.shopify.com">
 
+    {% comment %} {%- if request.page_type == 'index' -%}
+      {%- unless request.design_mode -%}
+        <script>
+          (() => {
+            const params = new URLSearchParams(window.location.search);
+
+            if (params.get('preview_home') === '1') return;
+
+            window.location.replace(
+              {{ routes.root_url | append: 'products/wearable-nursing-pillow' | json }}
+            );
+          })();
+        </script>
+      {%- endunless -%}
+    {%- endif -%} {% endcomment %}
+
     {%- if request.page_type == 'product' and product.featured_media.preview_image != blank -%}
       {%- assign waymelo_hero_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
       {%- assign waymelo_hero_image = waymelo_hero_media.preview_image -%}
@@ -21,12 +37,6 @@
         fetchpriority="high"
       >
     {%- endif -%}
-
-    {% if request.page_type == 'index' %}
-      <script type="text/javascript">
-        window.location.href = 'products/wearable-nursing-pillow';
-      </script>
-    {% endif %}
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
@@ -43,9 +53,9 @@
       {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
 
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
-    {% endif %}
+    {% comment %} The meta description, robots directive, Open Graph and Twitter tags
+       are all emitted by the 'meta-tags' snippet below, from one computed description.
+       See snippets/meta-tags.liquid. {% endcomment %}
 
     {% render 'meta-tags' %}
 
@@ -54,70 +64,18 @@
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'blocky-lys-global.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'glide.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'waymelo-quick-choose.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'blocky-image-video-slider.js' | asset_url }}" defer></script>
     <script src="{{ 'blocky-video.js' | asset_url }}" defer></script>
+    {%- if request.page_type == 'index' -%}
+      {{ 'waymelo-home.css' | asset_url | stylesheet_tag }}
+      <script src="{{ 'waymelo-home.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
     {{ content_for_header }}
 
-    {%- if template.name == 'product' -%}
-      <script>
-        (function () {
-          var observer;
-          var timeoutId;
-
-          function preloadPumperFeatures() {
-            var entry = document.querySelector(
-              'script[src*="/assets/pumper-bundles-v2.js"], link[href*="/assets/pumper-bundles-v2.js"]'
-            );
-            if (!entry) return false;
-
-            var entryUrl = entry.src || entry.href;
-            var base = entryUrl.split('?')[0].replace(/pumper-bundles-v2\.js$/, '');
-            [
-              'f-tier-cards',
-              'f-basic-tier',
-              'f-swatches',
-              'f-block-title',
-              'f-tier-tag',
-              'tool-ribbon-tag',
-              'tool-out-of-stock-message'
-            ].forEach(function (name, index) {
-              var href = base + 'pumper-chunk-' + name + '.js';
-              if (document.querySelector('link[href="' + href + '"]')) return;
-
-              var link = document.createElement('link');
-              link.rel = 'modulepreload';
-              link.href = href;
-              link.crossOrigin = 'anonymous';
-              if (index < 5) link.setAttribute('fetchpriority', 'high');
-              document.head.appendChild(link);
-            });
-
-            return true;
-          }
-
-          function stopWatching() {
-            if (observer) observer.disconnect();
-            if (timeoutId) window.clearTimeout(timeoutId);
-          }
-
-          if (preloadPumperFeatures()) return;
-
-          observer = new MutationObserver(function () {
-            if (!preloadPumperFeatures()) return;
-            stopWatching();
-          });
-          observer.observe(document.documentElement, { childList: true, subtree: true });
-          timeoutId = window.setTimeout(stopWatching, 10000);
-        })();
-      </script>
-
-    {%- endif -%}
 
     {%- liquid
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
@@ -191,14 +149,14 @@
         --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
         --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
 
-        --media-padding: {{ settings.media_padding }}px;
-        --media-border-opacity: {{ settings.media_border_opacity | divided_by: 100.0 }};
-        --media-border-width: {{ settings.media_border_thickness }}px;
-        --media-radius: {{ settings.media_radius }}px;
-        --media-shadow-opacity: {{ settings.media_shadow_opacity | divided_by: 100.0 }};
-        --media-shadow-horizontal-offset: {{ settings.media_shadow_horizontal_offset }}px;
-        --media-shadow-vertical-offset: {{ settings.media_shadow_vertical_offset }}px;
-        --media-shadow-blur-radius: {{ settings.media_shadow_blur }}px;
+        --media-padding: {{ settings.media_padding | default: 0 }}px;
+        --media-border-opacity: {{ settings.media_border_opacity | default: 10 | divided_by: 100.0 }};
+        --media-border-width: {{ settings.media_border_thickness | default: 0 }}px;
+        --media-radius: {{ settings.media_radius | default: 0 }}px;
+        --media-shadow-opacity: {{ settings.media_shadow_opacity | default: 0 | divided_by: 100.0 }};
+        --media-shadow-horizontal-offset: {{ settings.media_shadow_horizontal_offset | default: 0 }}px;
+        --media-shadow-vertical-offset: {{ settings.media_shadow_vertical_offset | default: 0 }}px;
+        --media-shadow-blur-radius: {{ settings.media_shadow_blur | default: 0 }}px;
         --media-shadow-visible: {% if settings.media_shadow_opacity > 0 %}1{% else %}0{% endif %};
 
         --page-width: {{ settings.page_width | divided_by: 10 }}rem;
@@ -338,13 +296,32 @@
       {{ 'blocky-lys.css' | asset_url | stylesheet_tag }}
       {%- if request.page_type == 'product' -%}
         {{ 'product-mobile.css' | asset_url | stylesheet_tag }}
+        <script src="{{ 'reconvert-widget-sync.js' | asset_url }}" defer="defer"></script>
       {%- endif -%}
       {%- if request.page_type == 'collection' -%}
         {{ 'waymelo-collection.css' | asset_url | stylesheet_tag }}
       {%- endif -%}
       {{ 'glide.core.min.css' | asset_url | stylesheet_tag }}
-      {{ 'quick-add.css' | asset_url | stylesheet_tag }}
-      {{ 'waymelo-quick-choose.css' | asset_url | stylesheet_tag }}
+      {%- if request.page_type == 'product' -%}
+        {{ 'blocky-main-product.css' | asset_url | stylesheet_tag }}
+        {{ 'blocky-featured-product.js' | asset_url | preload_tag: as: 'script' }}
+        <style>
+          /* Skip layout/paint of sections below the hero until they come near the viewport.
+             The HTML stays complete (SEO unchanged); only rendering work is deferred.
+             `auto` keeps the last rendered size, so nothing shifts once a section has been seen.
+             Sections hosting fixed-position overlays opt out while the overlay is open
+             (contain:paint would trap it). html.waymelo-cv-off lifts it during programmatic scrolls. */
+          html:not(.shopify-design-mode):not(.waymelo-cv-off) #MainContent > .shopify-section:is([id*="__product_addons"], [id*="__image_with_text"], [id*="__blocky_product_feature"], [id*="__blocky_image_video_slider"], [id*="__product_showcase"], [id*="__blocky_video_with_text"], [id*="__reviews_section"], [id*="__blocky_faq"], [id*="__newsletter"], [id*="__blocky_section_divider"], [id*="__blocky_announcement_bar"], [id*="__blocky_video_showcase"]):not(:has(.quick-add-modal[open], modal-dialog[open], .reviews-section__viewer:not([hidden]))) {
+            content-visibility: auto;
+            contain-intrinsic-size: auto var(--waymelo-cv-size, 700px);
+          }
+          #MainContent > [id*="__reviews_section"] { --waymelo-cv-size: 2400px; }
+          #MainContent > [id*="__product_showcase"] { --waymelo-cv-size: 1100px; }
+          #MainContent > [id*="__blocky_faq"] { --waymelo-cv-size: 900px; }
+          #MainContent > [id*="__newsletter"] { --waymelo-cv-size: 420px; }
+          #MainContent > [id*="__blocky_section_divider"] { --waymelo-cv-size: 80px; }
+        </style>
+      {%- endif -%}
 
     {%- unless settings.type_body_font.system? -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}
@@ -382,23 +359,6 @@
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
-
-    {%- if localization.available_countries.size > 1 -%}
-      {%- assign waymelo_popular_country_codes = localization.available_countries | where: 'popular?' | map: 'iso_code' -%}
-      <script id="WaymeloCountryData" type="application/json">
-        {"countries":[
-          {%- for country in localization.available_countries -%}
-            {
-              "iso": {{ country.iso_code | json }},
-              "name": {{ country.name | json }},
-              "currencyCode": {{ country.currency.iso_code | json }},
-              "currencySymbol": {{ country.currency.symbol | json }},
-              "popular": {%- if waymelo_popular_country_codes contains country.iso_code -%}true{%- else -%}false{%- endif -%}
-            }{%- unless forloop.last -%},{%- endunless -%}
-          {%- endfor -%}
-        ]}
-      </script>
-    {%- endif -%}
 
     {%- if settings.cart_type == 'drawer' -%}
       {%- render 'cart-drawer' -%}
@@ -496,9 +456,46 @@
           return scriptPromises[src];
         }
 
+        function loadStyle(marker) {
+          var href = marker.getAttribute('data-href');
+          if (!href || document.querySelector('link[rel="stylesheet"][href="' + href + '"]')) {
+            marker.remove();
+            return;
+          }
+          var link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = href;
+          marker.replaceWith(link);
+        }
+
+        /* A section shipped as <template data-waymelo-lazy-section> (see sections/apps.liquid,
+           product-showcase.liquid, newsletter.liquid): clone its content into the page. Scripts are
+           re-created so they execute exactly once, in document order, after the markup they target. */
+        function activateSection(marker) {
+          var fragment = document.importNode(marker.content, true);
+          fragment.querySelectorAll('script').forEach(function (old) {
+            var script = document.createElement('script');
+            Array.prototype.forEach.call(old.attributes, function (attr) {
+              script.setAttribute(attr.name, attr.value);
+            });
+            script.textContent = old.textContent;
+            old.replaceWith(script);
+          });
+          var sibling = marker.previousElementSibling;
+          while (sibling && (sibling.hasAttribute('data-waymelo-lazy-placeholder') || sibling.hasAttribute('data-waymelo-lazy-stub'))) {
+            var prev = sibling.previousElementSibling;
+            sibling.remove();
+            sibling = prev;
+          }
+          marker.replaceWith(fragment);
+        }
+
         function loadRoot(root) {
           if (!root || root.dataset.waymeloJsReady === 'true') return;
           root.dataset.waymeloJsReady = 'true';
+
+          root.querySelectorAll('template[data-waymelo-lazy-section]').forEach(activateSection);
+          root.querySelectorAll('template[data-waymelo-lazy-style]').forEach(loadStyle);
 
           var chain = Promise.resolve();
           root.querySelectorAll('template[data-waymelo-lazy-script]').forEach(function (marker) {
@@ -508,7 +505,7 @@
 
         function observe(scope) {
           var markers = scope.querySelectorAll
-            ? scope.querySelectorAll('template[data-waymelo-lazy-script]')
+            ? scope.querySelectorAll('template[data-waymelo-lazy-script], template[data-waymelo-lazy-style], template[data-waymelo-lazy-section]')
             : [];
           var roots = [];
 
@@ -528,7 +525,7 @@
               observer.unobserve(entry.target);
               loadRoot(entry.target);
             });
-          }, { rootMargin: '700px 0px', threshold: 0.01 });
+          }, { rootMargin: '1200px 0px', threshold: 0.01 });
 
           roots.forEach(function (root) { observer.observe(root); });
         }

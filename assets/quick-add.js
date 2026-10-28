@@ -14,16 +14,14 @@ if (!customElements.get('quick-add-modal')) {
       hide(preventFocus = false) {
         const cartNotification = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
         if (cartNotification) cartNotification.setActiveElement(this.openedBy);
-        if (this.modalContent && !this.querySelector('.waymelo-variant-popup')) {
-          this.modalContent.innerHTML = '';
-        }
+        if (this.modalContent) this.modalContent.innerHTML = '';
 
         if (preventFocus) this.openedBy = null;
         super.hide();
       }
 
       show(opener) {
-        if (this.querySelector('.waymelo-variant-popup')) {
+        if (this.classList.contains('waymelo-variant-modal')) {
           super.show(opener);
           return;
         }

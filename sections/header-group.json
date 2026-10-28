@@ -17,8 +17,8 @@
         "announcement_Rbcw9E": {
           "type": "announcement",
           "settings": {
-            "text": "Call us / Whatsup: {{ metaobjects.waymelo[\"1-321-233-3336\"].phone.value }}",
-            "link": ""
+            "text": "Call us / WhatsApp: {{ metaobjects.waymelo[\"1-321-233-3336\"].phone.value }}",
+            "link": "https://wa.me/13212333336"
           }
         }
       },

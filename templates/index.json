@@ -9,570 +9,373 @@
  */
 {
   "sections": {
-    "blocky_image_embedded_XPGRAk": {
-      "type": "blocky-image-embedded",
+    "waymelo_hero": {
+      "type": "waymelo-home-hero",
       "blocks": {
-        "title_ykwkb9": {
-          "type": "title",
+        "slide_pillow": {
+          "type": "slide",
           "settings": {
-            "title": "Stop Settling for Average",
-            "title_size": 50,
-            "title_color": "#000000"
+            "product": "wearable-nursing-pillow",
+            "image_alt": "Comfortable family travel with Waymelo",
+            "note_heading": "Comfort that travels",
+            "note_text": "Designed for easier moments on the go"
           }
         },
-        "body_qHbzVW": {
-          "type": "body",
+        "slide_bag": {
+          "type": "slide",
           "settings": {
-            "body_text": "<p>Experience quality you can feel</p>",
-            "body_size": 16,
-            "body_color": "#000000"
+            "product": "diaper-bag-backpack-with-changing-station-25l-large-capacity",
+            "image_alt": "Waymelo diaper backpack for organized family outings",
+            "note_heading": "Pack smarter",
+            "note_text": "Everything has its place"
           }
         },
-        "button_hHkHMn": {
-          "type": "button",
+        "slide_pad": {
+          "type": "slide",
           "settings": {
-            "button_label": "Shop Now",
-            "button_link": "shopify://collections/all",
-            "button_border_radius": "extra-round",
-            "button_style": "regular",
-            "button_background_color": "#7A5168",
-            "button_text_color": "#FFFFFF"
+            "product": "portable-diaper-changing-pad-with-wipes-pocket",
+            "image_alt": "Waymelo portable changing essentials",
+            "note_heading": "Ready for the day",
+            "note_text": "Practical comfort wherever you go"
+          }
+        },
+        "benefit_comfort": {
+          "type": "benefit",
+          "settings": {
+            "icon": "✧",
+            "text": "Comfort along the way"
+          }
+        },
+        "benefit_practical": {
+          "type": "benefit",
+          "settings": {
+            "icon": "↗",
+            "text": "Practical for life on the go"
+          }
+        },
+        "benefit_family": {
+          "type": "benefit",
+          "settings": {
+            "icon": "♡",
+            "text": "Room for family moments"
           }
         }
       },
       "block_order": [
-        "title_ykwkb9",
-        "body_qHbzVW",
-        "button_hHkHMn"
+        "slide_pillow",
+        "slide_bag",
+        "slide_pad",
+        "benefit_comfort",
+        "benefit_practical",
+        "benefit_family"
       ],
-      "name": "Blocky Image Embed",
       "settings": {
-        "section_height": "650px",
-        "mobile_height": "300px",
-        "image_fit": "cover",
-        "border_radius": 0,
-        "show_border": false,
-        "border_color": "#000000",
-        "overlay_opacity": 0,
-        "text_align": "vertical-center horizontal-center",
-        "full_screen": true,
-        "background_color": "#ffffff",
-        "page_width": 1200,
-        "padding_top": 0,
-        "padding_bottom": 0
+        "eyebrow": "Thoughtful essentials. Easier journeys.",
+        "heading": "Go places.",
+        "accent_heading": "Feel good.",
+        "text": "<p>Thoughtful essentials for easier days on the go.</p>",
+        "button_label_1": "Shop Now",
+        "button_link_1": "shopify://collections/all",
+        "button_label_2": "Our Story",
+        "button_link_2": "shopify://blogs/news",
+        "carousel_label": "Waymelo highlights",
+        "autoplay_delay": 5
       }
     },
-    "blocky_testimonial_slider_z4MCcB": {
-      "type": "blocky-testimonial-slider",
+    "image_with_text_h68zjW": {
+      "type": "image-with-text",
       "blocks": {
-        "testimonial_aYfcXE": {
-          "type": "testimonial",
+        "heading_q9TtyD": {
+          "type": "heading",
           "settings": {
-            "rating": 5,
-            "star_color": "#d4af36",
-            "empty_stars_style": "hidden",
-            "testimonial_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-            "author_name": "Jessica C.",
-            "show_verified": true
+            "heading": "<strong>Little Moments, Lifetime Memories</strong>",
+            "heading_size": "h1"
           }
         },
-        "testimonial_4YWXhM": {
-          "type": "testimonial",
+        "text_zHYtzH": {
+          "type": "text",
           "settings": {
-            "rating": 5,
-            "star_color": "#d4af36",
-            "empty_stars_style": "hidden",
-            "testimonial_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-            "author_name": "Terri M.",
-            "show_verified": true
+            "text": "<p>Shared parenting becomes effortless with Waymelo. Designed for both mom and dad, our ergonomic support turns feeding time into cozy bonding moments—whether you’re relaxing at home or exploring the world together. Enjoy stress-free journeys and focus on what truly matters: making sweet memories with your little one.</p>",
+            "text_style": "body"
           }
         },
-        "testimonial_NX7AAi": {
-          "type": "testimonial",
+        "button_BzPWPy": {
+          "type": "button",
           "settings": {
-            "rating": 4.5,
-            "star_color": "#d4af36",
-            "empty_stars_style": "hidden",
-            "testimonial_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-            "author_name": "Mark M.",
-            "show_verified": true
-          }
-        },
-        "testimonial_DxM8tM": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "star_color": "#d4af36",
-            "empty_stars_style": "hidden",
-            "testimonial_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-            "author_name": "Carley K.",
-            "show_verified": true
-          }
-        },
-        "testimonial_Emtcyx": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 4.7,
-            "star_color": "#d4af36",
-            "empty_stars_style": "hidden",
-            "testimonial_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-            "author_name": "Leah M.",
-            "show_verified": true
-          }
-        },
-        "testimonial_KRUyV3": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "star_color": "#d4af36",
-            "empty_stars_style": "hidden",
-            "testimonial_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-            "author_name": "Rebecca C.",
-            "show_verified": true
+            "button_label": "Shop Family Essentials",
+            "button_link": "shopify://collections/all",
+            "button_style_secondary": false
           }
         }
       },
       "block_order": [
-        "testimonial_aYfcXE",
-        "testimonial_4YWXhM",
-        "testimonial_NX7AAi",
-        "testimonial_DxM8tM",
-        "testimonial_Emtcyx",
-        "testimonial_KRUyV3"
+        "heading_q9TtyD",
+        "text_zHYtzH",
+        "button_BzPWPy"
       ],
-      "name": "BKY Testimonial Slider",
+      "name": "Little Moments, Lifetime Memories",
       "settings": {
-        "title": "What Our Customers Say",
-        "title_size": 60,
-        "title_color": "#000000",
-        "body_text": "<p>100,000+ Reviews • 3M+ Customers</p>",
-        "body_size": 16,
-        "body_color": "#000000",
-        "auto_scroll": true,
-        "dot_color": "#000000",
-        "show_dots": true,
-        "slides_desktop": 3,
-        "desktop_content_alignment": "center",
-        "mobile_content_alignment": "center",
-        "card_bg_color": "#ebe5e8",
-        "card_border_radius": 10,
-        "card_padding": 20,
-        "testimonial_text_size": 16,
-        "testimonial_text_color": "#1a1a1a",
-        "author_size": 16,
-        "author_color": "#1a1a1a",
-        "verified_color": "#00896b",
-        "full_width": false,
-        "media_spacing": 18,
-        "background_color": "#ffffff",
-        "page_width": 1200,
+        "image": "shopify://shop_images/sss.webp",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "blocky_result_with_media_pMNFnR": {
-      "type": "blocky-result-with-media",
+    "blocky_before_after_slider_x3NhGi": {
+      "type": "blocky-before-after-slider",
       "blocks": {
-        "body_mKPtRc": {
-          "type": "body",
-          "settings": {
-            "body_text": "<p>THE SCIENCE OF VISIBLE RESULTS</p>",
-            "body_size": 15,
-            "body_color": "#000000"
-          }
-        },
-        "title_Wnbt6n": {
+        "title_VnUxpg": {
           "type": "title",
           "settings": {
-            "title": "Results After 30 Days",
+            "title": "<strong>Before & After Using Our Product</strong>",
             "title_size": 40,
             "title_color": "#000000"
           }
         },
-        "results_Ymrmq3": {
-          "type": "results",
-          "settings": {
-            "percentage_1": 94,
-            "row_text_1": "<p>said their looks more radiant and glowing</p>",
-            "percentage_2": 90,
-            "row_text_2": "<p>saw a noticeable boost in efficiency</p>",
-            "percentage_3": 86,
-            "row_text_3": "<p>saw a noticeable boost in efficiency</p>",
-            "percentage_4": 90,
-            "row_text_4": "",
-            "percentage_5": 90,
-            "row_text_5": "",
-            "result_text_color": "#000000",
-            "result_text_size": 18,
-            "show_results_borders": true,
-            "results_padding": 1.4,
-            "percentage_size": 8,
-            "percentage_bold": true,
-            "show_percentage_bar": true,
-            "percentage_color": "#000000",
-            "non_percentage_color": "#ffffff",
-            "results_border_width": 0.4
-          }
-        },
-        "body_xTwLea": {
+        "body_d4LFnB": {
           "type": "body",
           "settings": {
-            "body_text": "<p>Claims are based on an independent consumer perception study as well as an expert assessment by a dermatologist in an independent clinical study of 33 people after using the 4-in-1 Skincare Wand and LightBoost Wand Activating Serum 5x per week within an 8-week time period.<br/><br/></p>",
-            "body_size": 12,
+            "body_text": "<p>Use the before and after slider to easily show the differences with your brand and other products</p>",
+            "body_size": 16,
             "body_color": "#000000"
           }
         }
       },
       "block_order": [
-        "body_mKPtRc",
-        "title_Wnbt6n",
-        "results_Ymrmq3",
-        "body_xTwLea"
+        "title_VnUxpg",
+        "body_d4LFnB"
       ],
-      "name": "Blocky Results with Media",
+      "disabled": true,
+      "name": "Blocky Before & After Slider",
       "settings": {
-        "height": "adapt",
-        "media_border_radius": 15,
-        "shadow": false,
-        "show_media_border": true,
-        "media_border_color": "#000000",
-        "layout": "row-reverse",
-        "desktop_results_width": "medium",
-        "mobile_layout": "col-reverse",
-        "background_color": "#f8f6f7",
+        "before_image_fit": "cover",
+        "after_image_fit": "cover",
+        "slider_size": "medium",
+        "slider_shape": "square",
+        "auto_shape": false,
+        "layout": "slider_second",
+        "before_label": "Before",
+        "after_label": "After",
+        "labels_color": "#000000",
+        "line_color": "#000000",
+        "background_color": "#FFFFFF",
+        "text_align": "center",
         "page_width": 1200,
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "featured_product_MK8yta": {
-      "type": "featured-product",
-      "blocks": {
-        "text_NY3Y7t": {
-          "type": "text",
-          "settings": {
-            "text": "{{ section.settings.product.vendor }}",
-            "text_style": "uppercase"
-          }
-        },
-        "title_EYnRTV": {
-          "type": "title",
-          "settings": {
-            "heading_size": "h1"
-          }
-        },
-        "price_78qAnp": {
-          "type": "price",
-          "settings": {}
-        },
-        "variant_picker_bijPFf": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
-          }
-        },
-        "quantity_selector_dxf8CJ": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "buy_buttons_9mzxcf": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
-          }
-        },
-        "share_cCCWyq": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
-          }
-        }
-      },
-      "block_order": [
-        "text_NY3Y7t",
-        "title_EYnRTV",
-        "price_78qAnp",
-        "variant_picker_bijPFf",
-        "quantity_selector_dxf8CJ",
-        "buy_buttons_9mzxcf",
-        "share_cCCWyq"
-      ],
-      "name": "t:sections.featured-product.presets.name",
+    "waymelo_products": {
+      "type": "waymelo-product-edit",
       "settings": {
-        "product": "",
-        "color_scheme": "",
-        "secondary_background": false,
-        "media_size": "medium",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "hide_variants": false,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "eyebrow": "The Waymelo edit",
+        "heading": "Your next go-to essentials.",
+        "collection": "all",
+        "products_to_show": 3,
+        "show_tag": true,
+        "show_view_all": true,
+        "view_all_label": "Shop all essentials"
       }
     },
-    "blocky_comparison_table_2_FTEgXR": {
-      "type": "blocky-comparison-table-2",
+    "waymelo_why_us": {
+      "type": "waymelo-why-us",
       "blocks": {
-        "row_UzjyDa": {
-          "type": "row",
+        "column_journeys": {
+          "type": "column",
           "settings": {
-            "left_text": "Why we are better",
-            "right_text": "Why not to choose them"
+            "icon": "travel_explore",
+            "heading": "Built for real journeys",
+            "text": "Practical, portable essentials designed for the way families actually travel."
           }
         },
-        "row_FzRHXk": {
-          "type": "row",
+        "column_comfort": {
+          "type": "column",
           "settings": {
-            "left_text": "Why we are better",
-            "right_text": "Why not to choose them"
+            "icon": "favorite",
+            "heading": "Comfort you can trust",
+            "text": "Chosen for the details that make long outings feel easier."
           }
         },
-        "row_fP3ppi": {
-          "type": "row",
+        "column_carry": {
+          "type": "column",
           "settings": {
-            "left_text": "Why we are better",
-            "right_text": "Why not to choose them"
+            "icon": "backpack",
+            "heading": "Light to carry",
+            "text": "Packs down small and stays out of the way until you need it."
           }
         },
-        "row_EjnPyY": {
-          "type": "row",
+        "column_ready": {
+          "type": "column",
           "settings": {
-            "left_text": "Why we are better",
-            "right_text": "Why not to choose them"
-          }
-        },
-        "row_Wqczg6": {
-          "type": "row",
-          "settings": {
-            "left_text": "Why we are better",
-            "right_text": "Why not to choose them"
+            "icon": "bolt",
+            "heading": "Ready when you are",
+            "text": "Grab-and-go essentials that work the moment you arrive."
           }
         }
       },
       "block_order": [
-        "row_UzjyDa",
-        "row_FzRHXk",
-        "row_fP3ppi",
-        "row_EjnPyY",
-        "row_Wqczg6"
+        "column_journeys",
+        "column_comfort",
+        "column_carry",
+        "column_ready"
       ],
-      "name": "Blocky Comparison Table 2",
       "settings": {
-        "image_alt": "",
-        "height": "medium",
-        "media_shadow": false,
-        "image_radius": 30,
-        "show_border": true,
-        "border_color": "#000000",
-        "title": "Comparison Table",
+        "eyebrow": "",
+        "heading": "Why Moms Choose Waymelo",
+        "columns_desktop": 4,
+        "columns_mobile": 1
+      }
+    },
+    "blocky_faq_UcXq6N": {
+      "type": "blocky-faq",
+      "blocks": {
+        "question_tnyG3V": {
+          "type": "question",
+          "settings": {
+            "question": "<strong>What makes Waymelo products different?</strong>",
+            "content": "<p>At Waymelo, we focus on practical, portable, and easy-to-use essentials that simplify everyday life. Our products are thoughtfully selected to help you stay organized, comfortable, and prepared wherever you go.</p>",
+            "default_open": false,
+            "icon_code": "",
+            "icon_color": "#000000"
+          }
+        },
+        "question_Vcb68p": {
+          "type": "question",
+          "settings": {
+            "question": "<strong>Are Waymelo products suitable for travel?</strong>",
+            "content": "<p>Absolutely! Our collection focuses on convenient solutions for everyday outings, road trips, flights, and family adventures. Check each product page for specific features, dimensions, and travel suitability.</p>",
+            "default_open": false,
+            "icon_code": "",
+            "icon_color": "#000000"
+          }
+        },
+        "question_XhmLrM": {
+          "type": "question",
+          "settings": {
+            "question": "<strong>Are your products easy to carry and use?</strong>",
+            "content": "<p>We prioritize convenience and simplicity. Many of our products feature compact, lightweight, or multifunctional designs, making them practical for busy lifestyles and life on the go.</p>",
+            "default_open": false,
+            "icon_code": "",
+            "icon_color": "#000000"
+          }
+        },
+        "question_HeC7Tr": {
+          "type": "question",
+          "settings": {
+            "question": "<strong>How long does shipping take?</strong>",
+            "content": "<p>Orders typically take 2–3 business days to process, followed by an estimated 8–12 business days for shipping. Delivery times may vary depending on your location and shipping conditions.</p>",
+            "default_open": false,
+            "icon_code": "",
+            "icon_color": "#000000"
+          }
+        },
+        "question_A3MhCj": {
+          "type": "question",
+          "settings": {
+            "question": "<strong>How can I contact Waymelo for help?</strong>",
+            "content": "<p>We're happy to help! If you have questions about our products, orders, or shipping, simply visit our Contact Us page and send us a message. Our support team will assist you as soon as possible.</p>",
+            "default_open": false,
+            "icon_code": "",
+            "icon_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "question_tnyG3V",
+        "question_Vcb68p",
+        "question_XhmLrM",
+        "question_HeC7Tr",
+        "question_A3MhCj"
+      ],
+      "name": "Blocky FAQ",
+      "settings": {
+        "title": "<strong>Questions About Waymelo</strong>",
         "title_size": 40,
         "title_color": "#000000",
-        "body_text": "<p>Show why your product is the smarter choice for your customers</p>",
+        "body_text": "<p>Got questions? We've got answers! Discover how Waymelo makes life on the go easier.</p>",
         "body_size": 16,
         "body_color": "#000000",
-        "text_container_gap": "1.5rem",
-        "left_label": "WE",
-        "left_label_color": "#000000",
-        "right_label": "THEM",
-        "right_label_color": "#000000",
-        "vs_label": "VS",
-        "vs_border_color": "#7A5168",
-        "label_size": 18,
-        "row_text_size": 18,
-        "list_gap": 12,
-        "item_gap": 12,
-        "card_shadow": false,
-        "card_radius": 28,
-        "card_padding": 24,
-        "top_bg": "#ebe5e8",
-        "bottom_bg": "#ffffff",
-        "icon_size": 20,
-        "show_icons": true,
-        "check_icon_bg_color": "#7A5168",
-        "check_icon_border_color": "#7A5168",
-        "check_icon_color": "#ffffff",
-        "x_icon_border_color": "#000000",
-        "x_icon_bg_color": "#ffffff",
-        "x_icon_color": "#000000",
-        "desktop_layout": "image_right",
-        "desktop_content_alignment": "center",
-        "mobile_content_alignment": "center",
-        "page_width": 1200,
-        "padding_top": 60,
-        "padding_bottom": 60,
-        "background_color": "#f8f6f7"
-      }
-    },
-    "blocky_faq_with_media_wGXCgt": {
-      "type": "blocky-faq-with-media",
-      "blocks": {
-        "question_FLzyar": {
-          "type": "question",
-          "settings": {
-            "question": "Question",
-            "content": "<p>Answer</p>",
-            "default_open": false,
-            "icon_code": "",
-            "icon_color": "#000000"
-          }
-        },
-        "question_7AgkdX": {
-          "type": "question",
-          "settings": {
-            "question": "Question",
-            "content": "<p>Answer</p>",
-            "default_open": false,
-            "icon_code": "",
-            "icon_color": "#000000"
-          }
-        },
-        "question_WdnqVU": {
-          "type": "question",
-          "settings": {
-            "question": "Question",
-            "content": "<p>Answer</p>",
-            "default_open": false,
-            "icon_code": "",
-            "icon_color": "#000000"
-          }
-        },
-        "question_r4JDnn": {
-          "type": "question",
-          "settings": {
-            "question": "Question",
-            "content": "<p>Answer</p>",
-            "default_open": false,
-            "icon_code": "",
-            "icon_color": "#000000"
-          }
-        },
-        "question_BGVYDk": {
-          "type": "question",
-          "settings": {
-            "question": "Question",
-            "content": "<p>Answer</p>",
-            "default_open": false,
-            "icon_code": "",
-            "icon_color": "#000000"
-          }
-        }
-      },
-      "block_order": [
-        "question_FLzyar",
-        "question_7AgkdX",
-        "question_WdnqVU",
-        "question_r4JDnn",
-        "question_BGVYDk"
-      ],
-      "name": "Blocky FAQ with Media",
-      "settings": {
-        "height": "adapt",
-        "overlay_opacity": 10,
-        "faq_media_radius": 15,
-        "title": "",
-        "title_size": 16,
-        "title_color": "#000000",
-        "body_text": "",
-        "body_size": 32,
-        "body_color": "#000000",
-        "button_label": "",
-        "button_link": "",
-        "button_border_radius": "extra-round",
-        "button_background_color": "#000000",
-        "button_text_color": "#ffffff",
-        "faq_title": "Frequently Asked Questions",
-        "faq_title_size": 40,
-        "faq_title_color": "#000000",
-        "faq_layout": "border",
+        "button_label": "<p><strong>Contact Us</strong></p>",
+        "button_link": "shopify://pages/contact",
+        "button_border_radius": "curved",
+        "button_background_color": "#7A5168",
+        "button_text_color": "#FFFFFF",
+        "faq_layout": "row",
         "question_padding": 15,
         "faq_border_radius": 15,
-        "faq_container_background": "#ffffff",
+        "faq_container_background": "#FFFFFF",
+        "faq_container_border_color": "transparent",
+        "show_container_shadow": true,
         "question_font_size": 18,
         "answer_font_size": 16,
         "question_text_color": "#000000",
         "answer_text_color": "#606367",
-        "faq_toggle_icon": "plus",
         "layout": "row-reverse",
-        "mobile_layout": "col",
-        "desktop_faq_width": "medium",
-        "text_align": "vertical-bottom horizontal-left",
-        "text_container_gap": "0",
-        "background_color": "#ffffff",
+        "columns": 1,
+        "desktop_faq_width": "large",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "text_vertical_alignment": "middle",
+        "chevron_style": "chevron",
+        "chevron_position": "end",
+        "text_container_gap": "2rem",
+        "background_color": "#FFFFFF",
         "page_width": 1200,
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "rich_text_6eLRa3": {
-      "type": "rich-text",
+    "newsletter_YPErkW": {
+      "type": "newsletter",
       "blocks": {
-        "heading_fepTXK": {
+        "heading_bFHb6A": {
           "type": "heading",
           "settings": {
-            "heading": "Ready to Experience the Difference?",
+            "heading": "&nbsp;<strong>Unlock Your 10% OFF!</strong>",
             "heading_size": "h1"
           }
         },
-        "text_p7LQtt": {
-          "type": "text",
+        "paragraph_AQdUTw": {
+          "type": "paragraph",
           "settings": {
-            "text": "<p>Thoughtfully designed, built to perform, and trusted by customers who expect more from their everyday essentials.</p>"
+            "text": "<p>Be the first to know about new collections and exclusive offers.</p>"
           }
         },
-        "button_ptiRVj": {
-          "type": "button",
-          "settings": {
-            "button_label": "Shop Now",
-            "button_link": "shopify://collections/all",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
+        "email_form_46dAKV": {
+          "type": "email_form",
+          "settings": {}
         }
       },
       "block_order": [
-        "heading_fepTXK",
-        "text_p7LQtt",
-        "button_ptiRVj"
+        "heading_bFHb6A",
+        "paragraph_AQdUTw",
+        "email_form_46dAKV"
       ],
-      "name": "t:sections.rich-text.presets.name",
+      "name": "t:sections.newsletter.presets.name",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 52
       }
-    },
-    "blocky_section_divider_MxLRby": {
-      "type": "blocky-section-divider",
-      "name": "Blocky Section Divider",
-      "settings": {
-        "shape": "waves_3",
-        "flip_horizontal": false,
-        "flip_vertical": false,
-        "shape_color": "#7A5168",
-        "background_color": "#ffffff",
-        "padding_top": 12,
-        "padding_bottom": 0
-      }
     }
   },
   "order": [
-    "blocky_image_embedded_XPGRAk",
-    "blocky_testimonial_slider_z4MCcB",
-    "blocky_result_with_media_pMNFnR",
-    "featured_product_MK8yta",
-    "blocky_comparison_table_2_FTEgXR",
-    "blocky_faq_with_media_wGXCgt",
-    "rich_text_6eLRa3",
-    "blocky_section_divider_MxLRby"
+    "waymelo_hero",
+    "image_with_text_h68zjW",
+    "blocky_before_after_slider_x3NhGi",
+    "waymelo_products",
+    "waymelo_why_us",
+    "blocky_faq_UcXq6N",
+    "newsletter_YPErkW"
   ]
 }
