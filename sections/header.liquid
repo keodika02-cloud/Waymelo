@@ -277,7 +277,7 @@
         {%- endcase -%}
       {%- endfor -%}
 
-      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble" onclick="if(document.querySelector('cart-drawer')){event.preventDefault();document.querySelector('cart-drawer').open(this);}">
         {%- liquid
           if cart == empty
             render 'icon-cart-empty'
@@ -316,7 +316,7 @@
     connectedCallback() {
       this.header = document.querySelector('.section-header');
       this.headerIsAlwaysSticky = this.getAttribute('data-sticky-type') === 'always' || this.getAttribute('data-sticky-type') === 'reduce-logo-size';
-      this.headerBounds = {};
+      this.headerBounds = { top: 0, bottom: (this.header ? this.header.offsetHeight : 80) || 80 };
 
       this.setHeaderHeight();
 
@@ -326,7 +326,7 @@
         this.header.classList.add('shopify-section-header-sticky');
       };
 
-      this.currentScrollTop = 0;
+      this.currentScrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
       this.preventReveal = false;
       this.predictiveSearch = this.querySelector('predictive-search');
 
@@ -374,6 +374,10 @@
       if (cartDrawer && cartDrawer.classList.contains('active')) {
         this.currentScrollTop = scrollTop;
         return;
+      }
+
+      if (!this.headerBounds || typeof this.headerBounds.bottom === 'undefined') {
+        this.headerBounds = { top: 0, bottom: (this.header ? this.header.offsetHeight : 80) || 80 };
       }
 
       if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {

@@ -268,7 +268,7 @@
       html {
         box-sizing: border-box;
         font-size: calc(var(--font-body-scale) * 62.5%);
-        height: 100%;
+        min-height: 100%;
         scrollbar-gutter: stable;
       }
 
@@ -612,5 +612,117 @@
         })();
       </script>
     {%- endunless -%}
+
+    <script>
+      (function() {
+        var scrollKey = 'wm_scroll_' + encodeURIComponent(window.location.pathname + window.location.search);
+        var targetY = null;
+        var userScrolled = false;
+
+        try {
+          var raw = sessionStorage.getItem(scrollKey);
+          if (raw !== null) {
+            var val = parseInt(raw, 10);
+            if (!isNaN(val) && val > 0) {
+              targetY = val;
+            }
+          }
+        } catch (e) {}
+
+        var hasHash = Boolean(window.location.hash && window.location.hash.length > 1);
+        if (targetY !== null && !hasHash) {
+          if ('scrollRestoration' in history) {
+            try {
+              history.scrollRestoration = 'manual';
+            } catch (e) {}
+          }
+          document.documentElement.classList.add('waymelo-cv-off');
+
+          function doRestore() {
+            if (userScrolled) return true;
+            var doc = document.documentElement;
+            var body = document.body;
+            var maxScroll = Math.max(
+              doc ? doc.scrollHeight : 0,
+              body ? body.scrollHeight : 0
+            ) - window.innerHeight;
+
+            window.scrollTo(0, targetY);
+            var currentY = window.pageYOffset || (doc ? doc.scrollTop : 0) || 0;
+            if (Math.abs(currentY - targetY) <= 8 || (maxScroll >= targetY && currentY >= targetY - 10)) {
+              return true;
+            }
+            return false;
+          }
+
+          doRestore();
+
+          function onUserInteraction() {
+            userScrolled = true;
+            cleanup();
+          }
+          ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(function(evt) {
+            window.addEventListener(evt, onUserInteraction, { passive: true, once: true });
+          });
+
+          var retries = 0;
+          var timer = setInterval(function() {
+            retries++;
+            var done = doRestore();
+            if (done || retries > 30 || document.readyState === 'complete') {
+              if (retries > 30 || done) {
+                clearInterval(timer);
+                cleanup();
+              }
+            }
+          }, 60);
+
+          function cleanup() {
+            clearInterval(timer);
+            setTimeout(function() {
+              document.documentElement.classList.remove('waymelo-cv-off');
+              if ('scrollRestoration' in history) {
+                try {
+                  history.scrollRestoration = 'auto';
+                } catch (e) {}
+              }
+            }, 400);
+          }
+
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', doRestore, { once: true });
+          }
+          window.addEventListener('load', function() {
+            doRestore();
+            setTimeout(cleanup, 200);
+          }, { once: true });
+        }
+
+        var ticking = false;
+        function recordScroll() {
+          ticking = false;
+          try {
+            var y = window.pageYOffset || document.documentElement.scrollTop || (document.body ? document.body.scrollTop : 0) || 0;
+            sessionStorage.setItem(scrollKey, Math.max(0, Math.round(y)));
+          } catch (e) {}
+        }
+
+        window.addEventListener('scroll', function() {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(recordScroll);
+          }
+        }, { passive: true });
+
+        function saveFinalPosition() {
+          recordScroll();
+        }
+        window.addEventListener('beforeunload', saveFinalPosition);
+        window.addEventListener('pagehide', saveFinalPosition);
+        document.addEventListener('visibilitychange', function() {
+          if (document.visibilityState === 'hidden') saveFinalPosition();
+        });
+      })();
+    </script>
   </body>
 </html>
